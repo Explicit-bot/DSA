@@ -69,22 +69,12 @@ You get:
  - Bounds safety
  - Auto memory management
  - Easy initialization
-
-
-
             
 In C++, you must use delete[] p;, not delete p[];.
-
 ✅ Correct:
-
-    int* p = new int[5];  // allocate array of 5 ints
     delete[] p;           // correct way to delete array
-
 ❌ Incorrect:
-
     delete p[];   // ❌ syntax error — invalid C++ syntax
-
-You’ll get a compiler error with delete p[]; because it's not a valid statement in C++.
 
 ⚠️ Why delete[]?
  - When you use new[], it allocates an array on the heap.

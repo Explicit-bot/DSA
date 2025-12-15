@@ -10,7 +10,7 @@ Each element is accessed by its index, starting from 0.
 
 🔹 3. Input/Output
         int n, arr[100];
-        std::cin >> n;
+        std::cin >> n;     //n<=100
         
         //Input
         for(int i = 0; i < n; ++i)
@@ -104,7 +104,7 @@ Because:
 
 int main(){
         int n, arr[10];
-        std::cout << "Enter number of elements (max " << 10<< "): ";
+        std::cout << "Enter number of elements (max 10): ";
         std::cin >> n;
         /*
         If n = 7, the program only takes input for the first 7 elements.
@@ -120,5 +120,5 @@ int main(){
                 std::cout << arr[i] << " ";
 
         }
-        std::cout<<std::endl;
+        std::cout<<"\n";
 }

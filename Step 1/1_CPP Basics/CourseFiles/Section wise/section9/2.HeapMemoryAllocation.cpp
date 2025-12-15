@@ -11,12 +11,12 @@ This is different from stack memory, where variables are automatically managed a
 
 ✅ Syntax: Allocation & Deallocation
 1. For Single Variable
-    int* p = new int;      // allocate memory for one int
+    int *p = new int;      // allocate memory for one int
     *p = 10;               // assign value
     delete p;              // deallocate memory
 2. For Array
 
-    int* arr = new int[5];     // allocate array of 5 integers
+    int *arr = new int[5];     // allocate array of 5 integers
     arr[0] = 1;
     arr[1] = 2;
     // ...
@@ -70,7 +70,7 @@ Example:
 
 ✅ Summary:
 Task	            Code
-Allocate	        int* p = new int;
+Allocate	        int *p = new int;
 Assign	            *p = 5;
 Deallocate	        delete p;
 Allocate array	    new int[n];
@@ -150,7 +150,7 @@ then the memory is leaked permanently — because the original address is lost, 
 🔍 Why?
 Suppose you do this:
 
-    int* p = new int(10);  // heap memory allocated
+    int *p = new int(10);  // heap memory allocated
     p = nullptr;           // address is lost! 🔥
 
 At this point:
@@ -195,74 +195,4 @@ Even if you leak heap memory (i.e., forget to delete it),
  - Memory leaks mean you lost control of what your program allocated.
 🛠️ Debugging hell	
  - Hard to trace where leaks happen without tools.
-
-💡 Summary:
-Is leaked heap memory permanently lost?	
- - ❌ No, OS frees it when program ends
-
-Can you access it again during runtime?	
- - ❌ No, unless you kept the pointer
-
-Should you still worry about leaks?	
- - ✅ Yes, especially in long-running apps
-
-
-You can only recover heap memory during runtime if you still have a pointer to it.
-If that pointer is lost (overwritten, goes out of scope), the memory becomes inaccessible — you cannot get it back.
-
-✅ So, how to recover heap memory during runtime?
-✅ 1. Use the pointer that still holds the address
-If you’ve kept the pointer, just call delete or delete[].
-
-    int* p = new int(42);
-    // later...
-    delete p;      // ✅ you recovered it
-    p = nullptr;   // optional: avoid dangling pointer
-
-✅ 2. Use another pointer to track the same address
-
-    int* p = new int(10);
-    int* backup = p;   // save the address
-    p = nullptr;       // oops! but backup still holds it
-    delete backup;     // ✅ memory recovered
-
-❌ But What If You Don’t Have a Pointer?
-
-    int* p = new int(50);
-    p = nullptr;       // original address is lost
-At this point, you cannot recover the memory.
-It’s still allocated in the heap, but there’s no way to access it — it's a memory leak.
-
-🧠 Can We Use Any Trick to Find It?
-❌ No safe or portable way exists in C++ to "scan the heap" and find lost memory. The language doesn't track allocations globally unless you track it yourself.
-
-✅ How Can You Prevent This?
-🛠 1. Use Smart Pointers
-They automatically delete memory when no longer used.
-    #include <memory>
-    std::unique_ptr<int> p = std::make_unique<int>(100);
-// no need to manually delete — automatic recovery!
-
-🛠 2. Custom Memory Managers
-In advanced cases, you can:
- - Build your own allocator
- - Keep track of all new calls
- - Recover memory manually by tracking all allocations
-⚠️ This is rare and only used in game engines, OS kernels, etc.
-
-✅ Summary Table
-Situation	                    Can You Recover Memory?   
-Action
-Pointer still exists	        ✅ Yes	
-Use delete / delete[]
-
-Pointer is copied elsewhere	    ✅ Yes	
-Use the backup pointer
-
-Pointer is overwritten or lost	❌ No	
-Memory leaked
-
-Program exits	                OS reclaims memory	
-(But you can't reuse it)
-
 */

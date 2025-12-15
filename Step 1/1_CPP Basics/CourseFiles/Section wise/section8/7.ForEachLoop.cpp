@@ -1,7 +1,7 @@
 /*
 ✅ What is a For-Each Loop?
 A for-each loop allows you to iterate directly over elements of a collection without using indices.
-works on the basis of size of an array and nit on no. of elements initialized with
+works on the basis of size of an array and not on no. of elements initialized with
 
 📌 Syntax:
 for (datatype element : collection) {

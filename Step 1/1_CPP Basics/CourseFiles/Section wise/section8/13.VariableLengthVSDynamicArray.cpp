@@ -59,8 +59,8 @@ Syntax	            int A[n];	                            int* A = new int[n];
 Runtime sizing	    ✅ Yes	                            ✅ Yes
 Resizable	    ❌ No	                            ✅ Yes (with new)
 Lifetime	    Auto (ends with block)	             Manual (needs delete[])
-Portability	    ❌ Not standard C++	            ✅ Fully standard
-Use case	    Small, local arrays	             Large or persistent arrays
+Portability	    ❌ Not standard C++	                    ✅ Fully standard
+Use case	    Small, local arrays	                     Large or persistent arrays
 
 ✅ Best Practices
 

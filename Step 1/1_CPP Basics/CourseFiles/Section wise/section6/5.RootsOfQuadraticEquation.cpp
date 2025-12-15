@@ -18,7 +18,7 @@ int main(){
             std::cout<<"real and unequal "<< r1<<" "<<r2;
         }
         else{
-            std::cout<<"imaginary";
+            std::cout<<"imaginary roots";
         }
     }
     return 0;

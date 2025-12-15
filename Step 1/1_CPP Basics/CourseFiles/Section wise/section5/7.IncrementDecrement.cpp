@@ -52,11 +52,7 @@ Post dec : x++;
              x=6
 
 j=2* ++i + 2* i++   
-In C++, these kind of lines causes undefined behavior because:
-	•	You’re modifying i twice:
-	•	once via ++i (pre-increment)
-	•	and once via i++ (post-increment)
-	•	Without a defined order of evaluation between them
+In C++, these kind of lines causes undefined behavior.
   the compiler is free to do anything:
 	  •	It might do ++i first
 	  •	Or i++ first
@@ -70,6 +66,7 @@ Anyone can be used.
 Reason:
 i++; is same as i=i+1; here i+1 is evaluated and the result is
 stored in a temporary variable and then assigned to i.
+
 ++i; here i+1 is not stored in a temporary variable, directly i is
 increased by 1 
 */

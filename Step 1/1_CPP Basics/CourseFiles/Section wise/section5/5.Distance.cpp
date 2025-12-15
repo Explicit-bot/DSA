@@ -17,5 +17,3 @@ int main() {
     std::cout<<"Distance is equal to" <<" "<<distance<<" ."<<std::endl;
     return 0;
 }
-//✅ Best Practice (Recommended)
-//To ensure portability and clarity, always write: std::pow

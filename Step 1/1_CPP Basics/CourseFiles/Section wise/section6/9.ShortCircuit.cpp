@@ -34,15 +34,15 @@ Example:
 
 int main(){
 
-    int a=10,b=5,i=5;
+    int a=10,b=5,i=5,j=5;
     
     if(a>b && ++i<=b){
     }
     std::cout<<i<<std::endl;      // 6 will be printed as i was increased after check
     //as first condition was true so the second statement was checked in the above
-    if(a>b || ++i<=b){
+    if(a>b || ++j<=b){
     }
-    std::cout<<i<<std::endl;     //6 will be printed as 2nd condition was not checked
+    std::cout<<j<<std::endl;     //5 will be printed as 2nd condition was not checked
     //as first condition was true so the second statement was not checked in the above
 }
 

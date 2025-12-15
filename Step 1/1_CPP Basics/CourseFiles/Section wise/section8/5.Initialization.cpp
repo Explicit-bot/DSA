@@ -46,6 +46,7 @@ int main() {
     std::cout << "Global Array:\n";
     for (int i = 0; i < 5; ++i)
         std::cout << globalArr[i] << ' ';
+        
     std::cout << '\n';
 
     std::cout << "Local Array:\n";

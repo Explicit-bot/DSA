@@ -19,7 +19,8 @@ int main(){
     rev[i]='\0';
     while(i>0){
         --i;
-        switch(rev[i]-'0'){
+        switch(rev[i]-'0'){         //Arithmetic on char converts them to int automatically.
+                                    //switch() needs an integral type (int, char, short, enum).
             case 0: 
                 std::cout<<"Zero ";
             break;

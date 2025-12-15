@@ -31,12 +31,6 @@ local exists only within the myFunc() function.
         cout << square;
     }
 square is re-declared fresh on every iteration.
-
-🧠 Summary:
-	•	✅ Declaration inside any {} is a block-scope or local variable declaration.
-	•	📍 Variable lifetime = duration of the block.
-	•	📦 Stored on the stack.
-	•	🔒 Not accessible outside that block.
 */
 #include <iostream>
 int main(){

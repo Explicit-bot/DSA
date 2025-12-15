@@ -116,7 +116,6 @@ int main() {
 🔴 Important: C++ has no bounds checking. Accessing A[10] will lead to undefined behavior.
 
 ⚠️ Best Practices for CP:
-
 Always initialize arrays: int A[1000] = {};
 Prefer std::vector<int> for dynamic size
 Avoid out-of-bounds access: 0 <= index < size
