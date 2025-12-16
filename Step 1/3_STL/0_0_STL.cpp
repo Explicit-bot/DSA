@@ -97,26 +97,7 @@ Used internally by STL
 
 sort(v.begin(), v.end(), greater<int>());
 
-====================================================
-  6️⃣ IMPORTANT TIME COMPLEXITIES
-====================================================
-
-vector insert (end)     -> O(1) amortized
-vector search           -> O(n)
-set / map insert        -> O(log n)
-unordered_map insert   -> O(1) average
-sort()                 -> O(n log n)
-
-
-====================================================
-  7️⃣ MOST USED HEADER (Shortcut)
-====================================================
-#include <bits/stdc++.h>   // includes almost everything
-
-Used mostly in Competitive Programming
-
-*************************************************************
- 🔥 WHAT DOES AMORTIZED TIME COMPLEXITY MEAN?
+🔥 WHAT DOES AMORTIZED TIME COMPLEXITY MEAN?
  Example: std::vector::push_back()
 *************************************************************
 Amortized = average cost per operation over a long sequence
@@ -180,10 +161,4 @@ Total number of operations               = n
 
 👉 Average cost per operation = O(n) / n = O(1)
 
-==============================================================
-📌 EXAM / INTERVIEW READY DEFINITION
-==============================================================
-Amortized O(1) means:
-"Although some operations take O(n),
-the average time per operation over many operations is O(1)."
 */

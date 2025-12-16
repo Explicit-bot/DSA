@@ -54,10 +54,6 @@ void begin_end_demo() {
 
     cout << *v.begin() << endl; // ✅ OK
     // cout << *v.end();        // ❌ Undefined Behavior (UB)
-    
-    CP Mental Model:
-    [ begin , end )
-    
 }
 
 Time Complexity:
@@ -82,40 +78,15 @@ void dereference_demo() {
 Time Complexity:
 Dereferencing → O(1)
 
-***********************************************************
- * 4. TRAVERSING CONTAINERS
- ***********************************************************
-void traversal_demo() {
-    vector<int> v = {1, 2, 3, 4};
 
-    // A) Iterator loop (most flexible)
-    for (auto it = v.begin(); it != v.end(); it++) {
-        cout << *it << " ";
-    }
-    cout << endl;
-
-    // B) Range-based for loop (most common in CP)
-    for (int x : v) {
-        cout << x << " ";
-    }
-    cout << endl;
-
-    // C) Index-based loop (VECTOR ONLY)
-    for (int i = 0; i < v.size(); i++) {
-        cout << v[i] << " ";
-    }
-    cout << endl;
-
-    NOTE:
-    - set / map ❌ no indexing
-    - iterators are mandatory there    
-}
-
+NOTE:
+- set / map ❌ no indexing
+- iterators are mandatory there    
 Time Complexity:
 Traversal → O(n)
 
 ***********************************************************
- * 5. ITERATORS WITH ALGORITHMS
+ * 4. ITERATORS WITH ALGORITHMS
  ***********************************************************
 void algorithm_demo() {
     vector<int> v = {1, 4, 2, 3};
@@ -135,7 +106,7 @@ find() → O(n)
 sort() → O(n log n)
 
 ***********************************************************
- * 6. lower_bound / upper_bound (VECTOR)
+ 5. lower_bound / upper_bound (VECTOR)
  ***********************************************************
 IMPORTANT:
 - Container MUST be sorted
@@ -160,7 +131,7 @@ lower_bound() → O(log n)
 upper_bound() → O(log n)
 
 ***********************************************************
- * 7. lower_bound IN set / map
+ * 6. lower_bound IN set / map
  ***********************************************************
 void lower_bound_set() {
     set<int> s = {1, 3, 5, 7};
@@ -178,24 +149,7 @@ set::lower_bound() → O(log n)
 map::lower_bound() → O(log n)
 
 ***********************************************************
- * 8. ITERATOR ARITHMETIC (VECTOR ONLY)
- ***********************************************************
-void iterator_arithmetic() {
-    vector<int> v = {10, 20, 30, 40};
-
-    auto it = v.begin();
-
-    it = it + 2;               // jump forward
-    int idx = it - v.begin();  // index from iterator
-
-    cout << "Index: " << idx << endl;
-}
-
-Time Complexity:
-Iterator arithmetic → O(1)
-
-***********************************************************
- * 9. REVERSE ITERATORS
+ * 7. REVERSE ITERATORS
  ***********************************************************
 void reverse_iterator_demo() {
     vector<int> v = {1, 2, 3};
@@ -210,7 +164,7 @@ Time Complexity:
 Traversal → O(n)
 
 ***********************************************************
- * 10. erase() WHILE ITERATING
+ * 8. erase() WHILE ITERATING
 ***********************************************************
 void erase_demo() {
     vector<int> v = {1, 2, 3, 2, 4};
@@ -229,7 +183,7 @@ vector::erase() → O(n)
 set::erase(it)  → O(log n)
 
 ***********************************************************
- * 11. ITERATOR INVALIDATION RULES
+ * 9. ITERATOR INVALIDATION RULES
  ***********************************************************
 VECTOR:
 - push_back() → ❌ may invalidate
@@ -242,49 +196,4 @@ SET / MAP:
 CP RULE:
 Never store vector iterators across modifications
 
-***********************************************************
- * 12. ITERATION ORDER
- ***********************************************************
-set<int>           → sorted order
-map<int,int>       → sorted by key
-unordered_set<int> → random order
-
-Time Complexity:
-Iteration → O(n)
-
-***********************************************************
- * 13. ITERATOR vs INDEX (CP DECISION)
- ***********************************************************
-vector traversal        → index / range-for
-delete while iterating  → iterator
-set / map               → iterator
-STL algorithms          → iterator
-
-***********************************************************
- * 14. COMMON CP PATTERNS
- ***********************************************************
-void cp_patterns() {
-    set<int> s = {1, 3, 5};
-
-    // Pattern 1: Existence check
-    if (s.find(3) != s.end()) {
-        cout << "Found" << endl;
-    }
-    // O(log n)
-
-    // Pattern 2: Nearest element
-    auto it = s.lower_bound(4);
-    // O(log n)
-
-    // Pattern 3: Safe erase
-    auto it2 = s.find(3);
-    if (it2 != s.end())
-        s.erase(it2);
-    // O(log n)
-
-    // Pattern 4: Index from iterator (vector only)
-    vector<int> v = {10, 20, 30};
-    int idx = find(v.begin(), v.end(), 20) - v.begin();
-    // O(1)
-}
 */

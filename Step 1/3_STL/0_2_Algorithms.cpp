@@ -53,8 +53,6 @@ Checks whether a value exists using binary search
 
 Return type:
 bool
-true  → element exists
-false → element does not exist
 
 Containers supported:
 ✔ vector
@@ -134,7 +132,7 @@ Example:
 Output:
 4
 
-CP Usage:
+CP Usage:   ***********
 count of x = upper_bound - lower_bound
 
 ==============================================================
@@ -281,8 +279,6 @@ Generates the next lexicographical permutation
 
 Return type:
 bool
-true  → next permutation exists
-false → last permutation reached
 
 Time Complexity:
 O(n)
