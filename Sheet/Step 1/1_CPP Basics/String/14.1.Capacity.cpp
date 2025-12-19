@@ -93,5 +93,4 @@ Performance tuning	        Prevent frequent reallocations
     string s = "Hello";
     s[10] = 'X'; // ❌ Even if capacity ≥ 11, this is undefined behavior
 → capacity() tells how much can be stored, not what is valid to access.
-
 */

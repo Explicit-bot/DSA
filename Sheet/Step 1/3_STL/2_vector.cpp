@@ -18,7 +18,7 @@ using namespace std;
 ==============================================================
 2️⃣ DECLARATION & INITIALIZATION
 ==============================================================
-// Declaration
+Declaration
 vector<int> v;
 vector<string> names;
 
@@ -58,8 +58,7 @@ v.shrink_to_fit();   // Release unused memory
 📌 NOTE:
 capacity grows automatically (usually doubles)
 reserve() avoids repeated reallocations
-reserve(n) guarantees NO reallocation
-ONLY until size <= n
+reserve(n) guarantees NO reallocation but ONLY until size <= n
 
 ==============================================================
 4️⃣ ADDING ELEMENTS
@@ -154,10 +153,6 @@ for(auto x : v){
 for(auto it = v.rbegin(); it != v.rend(); it++){
     cout << *it << " ";
 }
-
-// Constant iterators (read-only)
-v.cbegin();
-v.cend();
 
 ==============================================================
 🔟 SEARCHING ELEMENTS
@@ -255,17 +250,7 @@ Invalidated by:
 ✔ erase
 
 ==============================================================
-1️⃣9️⃣ SPECIAL CASE: vector<bool> ⚠️
-==============================================================
-vector<bool> vb(10);
-
-⚠️ vector<bool> is bit-packed
-❌ No real bool reference
-❌ Slower access
-🚫 Avoid in CP
-
-==============================================================
-2️⃣0️⃣ TIME COMPLEXITY SUMMARY
+19 TIME COMPLEXITY SUMMARY
 ==============================================================
 Access (v[i])        → O(1)
 push_back            → O(1) amortized
@@ -275,7 +260,7 @@ sort                 → O(n log n)
 swap                 → O(1)
 
 ==============================================================
-2️⃣1️⃣ VECTOR vs ARRAY
+2️⃣0 VECTOR vs ARRAY
 ==============================================================
 Array  → fixed size
 Vector → dynamic size
@@ -299,46 +284,23 @@ int main(){
 }
 /*
 ==============================================================
-🔹 std::vector::front()
+🔹 std::vector::front() & std::vector::back()
 ==============================================================
 Definition:
 front() returns the FIRST element of the vector.
-
-Equivalent to:
-v.front() == v[0];
-
-Time Complexity:
-O(1)
-
-Important Notes:
-✔ Returns a REFERENCE to the first element
-✔ Can be used to READ or MODIFY the element
-❌ Calling front() on an empty vector causes UNDEFINED BEHAVIOR
-
-// Modifying using front()
-    vector<int> v1 = {1, 2, 3};
-    v1.front() = 100;   // v1 becomes {100, 2, 3}
-
-==============================================================
-🔹 std::vector::back()
-==============================================================
-Definition:
 back() returns the LAST element of the vector.
 
 Equivalent to:
+v.front() == v[0];
 v.back() == v[v.size() - 1];
 
 Time Complexity:
 O(1)
 
 Important Notes:
-✔ Returns a REFERENCE to the last element
+✔ Returns a REFERENCE to the first or last element
 ✔ Can be used to READ or MODIFY the element
-❌ Calling back() on an empty vector causes UNDEFINED BEHAVIOR
-
-// Modifying using back()
-    vector<int> v2 = {1, 2, 3};
-    v2.back() = 300;    // v2 becomes {1, 2, 300}
+❌ Calling front() or back() on an empty vector causes UNDEFINED BEHAVIOR
 
 ==============================================================
 ⚠️ SAFETY CHECK (VERY IMPORTANT)

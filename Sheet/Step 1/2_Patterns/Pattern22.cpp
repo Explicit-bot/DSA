@@ -21,9 +21,10 @@ void pattern22(int N){
         int cnt{i};
         for(int j{};j<2*N-1;++j){
             if(i==cnt||j==cnt||i==2*N-cnt-2||j==2*N-cnt-2){
-                cout<<cnt;
+                cout<<N-cnt;
             }
         }
+        cout<<"\n";
     }
 }
 
