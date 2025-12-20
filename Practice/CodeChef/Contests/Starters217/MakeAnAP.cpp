@@ -2,7 +2,6 @@
 ====================================================
                 MAKE AN AP
 ====================================================
-
 Chef has a strictly increasing sequence A of length N.
 He wants to convert it into an Arithmetic Progression (AP).
 
