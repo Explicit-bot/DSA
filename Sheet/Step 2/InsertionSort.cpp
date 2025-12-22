@@ -1,37 +1,27 @@
+/*
+Take current element and place it at its correct
+position in the already sorted left part
+*/
+
 #include<iostream>
 #include<vector>
 using namespace std;
 
-/*
-=====================================================
-🧠 INSERTION SORT
-=====================================================
-Idea:
-- Build the sorted array one element at a time
-- Take current element and place it at its correct
-  position in the already sorted left part
-=====================================================
-*/
-
-//---------------------------------------------------
 // Iterative Insertion Sort (Brute Force)
-//---------------------------------------------------
 void insertionSort(vector<int>& nums) {
-    int n = nums.size();
+    int n=nums.size();
 
-    for (int i = 1; i < n; i++) {
-        int j = i;
+    for (int i{1}; i < n; ++i) {
+        int j{i};
 
         while (j > 0 && nums[j] < nums[j - 1]) {
             swap(nums[j], nums[j - 1]);
-            j--;
+            --j;
         }
     }
 }
 
-//---------------------------------------------------
 // Iterative Insertion Sort (Optimized)
-//---------------------------------------------------
 void insertionSortOptimized(vector<int>& nums) {
     int n = nums.size();
 
@@ -48,9 +38,7 @@ void insertionSortOptimized(vector<int>& nums) {
     }
 }
 
-//---------------------------------------------------
 // Recursive Insertion Sort (Brute Force)
-//---------------------------------------------------
 void insertionSortRec(vector<int>& nums, int n) {
     if (n <= 1) return;
 
@@ -59,13 +47,11 @@ void insertionSortRec(vector<int>& nums, int n) {
     int j = n - 1;
     while (j > 0 && nums[j] < nums[j - 1]) {
         swap(nums[j], nums[j - 1]);
-        j--;
+        --j;
     }
 }
 
-//---------------------------------------------------
 // Recursive Insertion Sort (Optimized)
-//---------------------------------------------------
 void insertionSortRecOptimized(vector<int>& nums, int n) {
     if (n <= 1) return;
 
@@ -100,10 +86,10 @@ int main() {
     cout << endl;
 
     // Choose ONE
-    // insertionSort(nums);
+     insertionSort(nums);
     // insertionSortOptimized(nums);
     // insertionSortRec(nums, n);
-    insertionSortRecOptimized(nums, n);
+    //insertionSortRecOptimized(nums, n);
 
     cout << "Sorted array:\n";
     for (int x : nums) cout << x << " ";
@@ -121,8 +107,8 @@ int main() {
 |-------------------------|-----------|--------------|------------|-------|
 | Iterative (Brute)       | O(n)✅    | O(n²)        | O(n²)      | O(1)  |
 | Iterative (Optimized)   | O(n)✅    | O(n²)        | O(n²)      | O(1)  |
-| Recursive (Brute)       | O(n)✅    | O(n²)        | O(n²)      | O(n)* |
-| Recursive (Optimized)   | O(n)✅    | O(n²)        | O(n²)      | O(n)* |
+| Recursive (Brute)       | O(n)✅    | O(n²)        | O(n²)      | O(n) |
+| Recursive (Optimized)   | O(n)✅    | O(n²)        | O(n²)      | O(n) |
 
 *O(n) due to recursion stack
 =====================================================
