@@ -24,31 +24,14 @@ Each element is accessed by its index, starting from 0.
 ❌ No bounds checking in C++:
         arr[1000] = 10;  // ❌ Undefined Behavior if size < 1000
 
-✅ Always ensure size is sufficient and constant:
-        const int N = 1e6 + 5;
-        int arr[N];  // common in CP
-
 ❌ “No bounds checking in C++” — What does it mean?
 In C++, when you access an element of an array using an index, the compiler does not automatically check whether that index is within the valid range of the array.
 🔥 This means:
 You can accidentally access memory outside the array — and the compiler won’t stop you.
 🔍 Example:
         int arr[5] = {10, 20, 30, 40, 50};
-        std::cout << arr[10];  // ❌ No error from compiler
-
-What happens?
+        std::cout << arr[10];  // ❌ No error from compiler`
 •This is undefined behavior (UB).
-•You’re accessing memory that doesn’t belong to arr.
-•Your program may:
-•Print garbage 🗑
-•Crash 💥
-•Seem to work sometimes 😬
-
-🧠 Why is this dangerous?
-Because:
-•You won’t get a compile-time error.
-•You may get a runtime crash only sometimes, depending on memory layout.
-•Can cause hard-to-debug bugs in CP and projects.
 
 🔹 5. Memory in Arrays
 •int arr[5] stores 5 integers contiguously
