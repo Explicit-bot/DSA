@@ -7,7 +7,7 @@ void largestelement(int arr[],int n){
     cout<<arr[n-1]<<"\n";
 }
 
-//Better approach
+//Optimal approach
 void Largestelement(int arr[],int n){
     int max=arr[0];
     for(int i{};i<n;++i){
@@ -18,7 +18,7 @@ void Largestelement(int arr[],int n){
     cout<<max<<"\n";
 } 
 
-//Optimal approach
+//Using STL Algo
 void LargestElement(int arr[],int n){
     cout<< *max_element(arr,arr+n)<<"\n";
 }
@@ -35,9 +35,9 @@ int main(){
     //cout<<"Brute: ";
     //largestelement(arr,n);
 
-    //cout<<"Better: ";
+    //cout<<"//Optimal: ";
     //Largestelement(arr,n);
 
-    cout<<"Optimal: ";
+    cout<<"Using STL: ";
     LargestElement(arr,n);
 }

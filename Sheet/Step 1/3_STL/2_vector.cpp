@@ -90,6 +90,9 @@ v.erase(v.begin());
 // Remove element at index
 v.erase(v.begin() + 2);
 
+//Remove Range
+v.erase(v.begin(),v.begin()+4)
+
 // Remove all elements
 v.clear();
 
@@ -137,8 +140,6 @@ v.empty();
 ==============================================================
 9️⃣ ITERATORS (VERY IMPORTANT)
 ==============================================================
-#include <iostream>
-
 // Normal iterator
 for(auto it = v.begin(); it != v.end(); it++){
     cout << *it << " ";
@@ -309,4 +310,157 @@ if(!v.empty()){
     cout << v.front();
     cout << v.back();
 }
+*/
+
+
+
+/*
+==============================================================
+🧠 C++ VECTOR — TIME & SPACE COMPLEXITY (CHEAT SHEET)
+==============================================================
+
+--------------------------------------------------------------
+1️⃣ ACCESS OPERATIONS
+--------------------------------------------------------------
+v[i]            → O(1) time, O(1) space   // No bounds check
+v.at(i)         → O(1) time, O(1) space   // Throws exception
+v.front()       → O(1) time, O(1) space
+v.back()        → O(1) time, O(1) space
+v.data()        → O(1) time, O(1) space
+
+⚠️ Calling front()/back() on empty vector → UNDEFINED BEHAVIOR
+
+
+--------------------------------------------------------------
+2️⃣ SIZE & CAPACITY
+--------------------------------------------------------------
+v.size()        → O(1)
+v.capacity()    → O(1)
+v.max_size()    → O(1)
+v.empty()       → O(1)
+
+
+--------------------------------------------------------------
+3️⃣ ADDING ELEMENTS
+--------------------------------------------------------------
+v.push_back(x)      → O(1) amortized
+v.emplace_back(x)   → O(1) amortized
+v.insert(pos, x)    → O(n)
+v.emplace(pos, x)   → O(n)
+
+📌 push_back() worst case → O(n) (reallocation happens)
+
+
+--------------------------------------------------------------
+4️⃣ REMOVING ELEMENTS
+--------------------------------------------------------------
+v.pop_back()        → O(1)
+v.erase(pos)        → O(n)
+v.erase(l, r)       → O(n)
+v.clear()           → O(n)
+
+
+--------------------------------------------------------------
+5️⃣ MEMORY MANAGEMENT
+--------------------------------------------------------------
+v.reserve(n)        → O(n)
+v.resize(n)         → O(n)
+v.shrink_to_fit()   → O(n)
+
+📌 reserve() avoids repeated reallocations
+
+
+--------------------------------------------------------------
+6️⃣ ASSIGN & COPY
+--------------------------------------------------------------
+v.assign(n, x)              → O(n)
+v.assign(it1, it2)          → O(n)
+vector<int> v2 = v1         → O(n) time, O(n) space
+
+
+--------------------------------------------------------------
+7️⃣ ITERATION
+--------------------------------------------------------------
+Index loop                → O(n)
+Iterator loop             → O(n)
+Range-based for loop      → O(n)
+Reverse iterator          → O(n)
+
+
+--------------------------------------------------------------
+8️⃣ SEARCHING ( <algorithm> )
+--------------------------------------------------------------
+find()              → O(n)
+count()             → O(n)
+
+(binary search utilities require SORTED vector)
+
+binary_search()     → O(log n)
+lower_bound()       → O(log n)
+upper_bound()       → O(log n)
+
+
+--------------------------------------------------------------
+9️⃣ SORTING & REVERSING
+--------------------------------------------------------------
+sort()              → O(n log n) time, O(log n) space
+reverse()           → O(n) time, O(1) space
+
+
+--------------------------------------------------------------
+🔟 MIN / MAX
+--------------------------------------------------------------
+min_element()       → O(n)
+max_element()       → O(n)
+
+
+--------------------------------------------------------------
+1️⃣1️⃣ ERASE–REMOVE IDIOM
+--------------------------------------------------------------
+v.erase(remove(v.begin(), v.end(), x), v.end());
+
+remove()            → O(n)
+erase()             → O(n)
+Total               → O(n) time, O(1) space
+
+
+--------------------------------------------------------------
+1️⃣2️⃣ SWAP
+--------------------------------------------------------------
+v1.swap(v2)         → O(1) time, O(1) space
+// Only internal pointers are swapped
+
+
+--------------------------------------------------------------
+1️⃣3️⃣ VECTOR OF PAIRS
+--------------------------------------------------------------
+push_back({a,b})    → O(1) amortized
+emplace_back(a,b)   → O(1) amortized
+Traversal           → O(n)
+
+
+--------------------------------------------------------------
+1️⃣4️⃣ 2D VECTOR
+--------------------------------------------------------------
+mat[i][j]           → O(1)
+Traversal           → O(rows × cols)
+
+
+--------------------------------------------------------------
+1️⃣5️⃣ ITERATOR INVALIDATION ⚠️ (VERY IMPORTANT)
+--------------------------------------------------------------
+push_back()     → May invalidate (if reallocation)
+insert()        → Invalidates
+erase()         → Invalidates
+reserve()       → Invalidates
+clear()         → Invalidates
+
+
+--------------------------------------------------------------
+1️⃣6️⃣ ONE-LINE EXAM SUMMARY
+--------------------------------------------------------------
+std::vector provides O(1) random access, amortized O(1) insertion
+at the end, and O(n) insertion/deletion elsewhere due to shifting.
+
+==============================================================
 */

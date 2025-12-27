@@ -3,7 +3,7 @@
 #include <climits>
 using namespace std;
 
-//Brute force
+//Brute force(O(n+nlogn))
 void slargestelement(int arr[],int n){
     if(n < 2){
     cout << "No Second Largest\n";
@@ -20,7 +20,7 @@ void slargestelement(int arr[],int n){
     cout<<"All are equal"<<"\n";
 }
 
-//Better approach
+//Better approach(O(n))
 void SLargestelement(int arr[],int n){
     int maxx=arr[0];
     for(int i{};i<n;++i){
@@ -45,7 +45,7 @@ void SLargestelement(int arr[],int n){
     }
 } 
 
-//Optimal approach
+//Optimal approach(O(n))
 void SLargestElement(int arr[],int n){
     if(n<2){
         cout<<"No Second Largest."<<"\n";

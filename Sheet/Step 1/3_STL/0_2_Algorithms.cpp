@@ -333,4 +333,40 @@ Example:
 Output:
 1 2 3
 
+==============================================================
+🔁 std::rotate() — the official STL move
+==============================================================
+📌 Syntax
+rotate(start, middle, end);
+
+🧠 What it actually does
+It rotates the range [start, end) such that
+middle becomes the new first element.
+
+🔄 Left Rotation (most common in CP)
+Example: Left rotate by k
+
+    vector<int> v = {1, 2, 3, 4, 5};
+    int k = 2;
+
+    rotate(v.begin(), v.begin() + k, v.end());
+    // v becomes {3, 4, 5, 1, 2}
+
+🔄 Right Rotation (aka “rotate backwards”)
+Right rotate by k is just a small brain-flip 🧠
+
+    int k = 2;
+    rotate(v.begin(), v.end() - k, v.end());
+    // {4, 5, 1, 2, 3}
+
+⚡ Time & Space Complexity
+Time: O(n)
+Space: O(1) (in-place, no extra array 😮‍🔥)
+
+std::rotate() works on:
+array
+vector
+deque
+string
+any container with Forward Iterators
 */
