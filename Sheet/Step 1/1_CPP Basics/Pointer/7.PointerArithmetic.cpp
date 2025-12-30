@@ -13,11 +13,11 @@ P 	 	 200
  
 
 operations :
-1.p++; //pointer will move forward to next index or location
-2.p--; // pointer will move backward to previous index or location
-3.p=p+2; //This will move pointer by 2 elements forward
-4.p=p-2; // This will move pointer by 2 elements backward
-5.d=q-p; //Assume it is another pointer lets q=206 and p=200
+1.p++;      //pointer will move forward to next index or location
+2.p--;      // pointer will move backward to previous index or location
+3.p=p+2;    //This will move pointer by 2 elements forward
+4.p=p-2;    // This will move pointer by 2 elements backward
+5.d=q-p;    //Assume it is another pointer lets q=206 and p=200
 206-200=6/2=3 it will give index 3 value.
 
 p + n means p + n × sizeof(datatype) →
