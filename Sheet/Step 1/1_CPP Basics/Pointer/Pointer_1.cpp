@@ -54,6 +54,43 @@ This causes unused memory to remain occupied — your program loses access to it
 If you set p = nullptr before calling delete p,
 then the memory is leaked permanently — because the original address is lost, and you can no longer delete it until the program exits
 
+                ====================================================
+                                Dangling Pointer
+                ====================================================
+If a pointer is having an address of a memory location which is
+already deallocated.
+example:
+    int *p=new int[5];
+    delete []p;
+Now p is a Dangling pointer.
+
+✅ How to prevent dangling pointers?
+ - Set pointer to nullptr after delete:
+    delete p;
+    p = nullptr;
+ - Avoid returning addresses of local variables.
+ - Use smart pointers (std::unique_ptr, std::shared_ptr) in modern C++ — they handle memory safely and automatically.
+ - Avoid raw pointers when possible. Prefer references or smart pointers.
+
+                ====================================================
+                                    NULL vs nullptr
+                ====================================================
+NULL:
+•it is a constant whose value is 0.
+•NULL means, pointer is not pointing on any valid location.
+•In place of NULL, 0 can be used.
+•Using 0 in place of NULL may create confusion for programmer.
+
+nullptr 
+•It is a keyword in C++.
+•nullptr means, pointer is not pointing on any valid location.(same
+as NULL)
+•Nullptr doesn’t mean 0.
+•0 cannot be used in its place. 
+
+                    ====================================================
+                                    Zero Initialize
+                    ====================================================
 ✅ How to zero-initialize Array pointer:
     int* p = new int[5]();  // Note the parentheses
 This will set all elements to 0.

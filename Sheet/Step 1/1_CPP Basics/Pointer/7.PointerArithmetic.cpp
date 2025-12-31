@@ -2,14 +2,14 @@
 Pointer Arithmetic :
 Int A[5]={2,4,6,8,10}; 
 
-Int *p=A;
+Int *p=A;    //A gives the address of the first element of the array
 Array and pointer is declared.
 Pointer ‘*p’ is also assigned to Array ‘A’
 
     0   1   2   3   4
 A   2   4   6   8   10
 
-P 	 	 200
+P 	 	 200    //Address of A[0]
  
 
 operations :
@@ -91,14 +91,6 @@ Example Output:
     std::cout << *p;       // prints 2
     std::cout << *(p + 1); // prints 4
     std::cout << p[2];     // prints 6
-
-✅ Summary:
-Expression	    Meaning         	        Output
-p	            address of A[0]	            0x...
-*p	            value at A[0]	            2
-p[2]	        value at A[2]	            6
-*(p + 3)	    value at A[3]	            8
-
 
 
 int A[5] = {2, 4, 6, 8, 10};

@@ -130,9 +130,3 @@ int main() {
 
     return 0;
 }
-/*
-🧠 Summary:
- - ✅ Always delete[] before reassigning new memory to avoid memory leaks.
- - ✅ In heap, you can "resize" an array by allocating a new one.
- - ❌ You cannot do this with stack arrays.
-*/
