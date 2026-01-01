@@ -1,6 +1,6 @@
 /*
 *****************************************************
- 🔥 C++ STL (Standard Template Library) — Quick Overview
+ 🔥 C++ STL (Standard Template Library) 
 *****************************************************
 STL = Collection of generic classes & functions
 Used for data storage, manipulation, searching, sorting

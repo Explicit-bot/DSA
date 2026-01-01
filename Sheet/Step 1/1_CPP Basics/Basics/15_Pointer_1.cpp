@@ -40,7 +40,7 @@ E.g.
     delete[] arr;              // deallocate array memory
 ❗ Always use delete[] when using new[].
 
-🔁 Smart Pointers (Modern C++)
+🔁 Smart Pointers 
 In modern C++, it's better to use smart pointers like std::unique_ptr or std::shared_ptr to automatically manage heap memory.
 Example:
     #include <memory>
