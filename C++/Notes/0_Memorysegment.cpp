@@ -1,4 +1,8 @@
 /*
+If anyone reads these notes in the future, you might wonder why some very simple topics are explained in so much detail, or think that the person who wrote them was overcomplicating things. The reason is that I don’t feel comfortable moving forward until everything I understand about a topic is properly written in my notes. Because of that, I tend to include almost everything I learn about a topic.
+
+For me, this is both an advantage and a disadvantage. It helps me study topics in great depth and build a stronger understanding, but at the same time, it can slow me down and sometimes make things more confusing than they need to be.  
+
 🧠 Memory Segments in C++
 C++ program memory is typically divided into 5 segments:
 Segment                     Stores                              Example
