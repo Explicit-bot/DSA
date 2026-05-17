@@ -4,7 +4,6 @@ return a list of pairs where each pair contains a unique element from the array 
 
 You may return the result in any order, but each element must appear exactly once in the output.
 */
-
 #include<iostream>
 #include<unordered_map>
 using namespace std;
