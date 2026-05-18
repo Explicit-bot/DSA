@@ -41,8 +41,8 @@ Too many or too large arrays on the stack can cause a stack overflow:
 
 🟣 3. Static / Global Memory
 	•	Stores:
-	•	Global variables
-	•	Static local variables
+		-Global variables
+		-Static local variables
 	•	Exists for entire duration of the program.
 	•	Automatically initialized to 0.
 

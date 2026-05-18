@@ -1,27 +1,42 @@
 /*
 Given an integer N, print the following pattern.
 for example N=5
-A
-BB
-CCC
-DDDD
-EEEEE
+**********
+****  ****
+***    ***
+**      **
+*        *
+**      **
+***    *** 
+****  ****
+**********
 */
 
 #include <iostream>
 using namespace std;
 
-void pattern16(int N){
-    char chr='A';
-    for(int i{};i<N;++i){
-        for(int j{};j<i+1;++j){
-            cout<<chr;
+void pattern19(int N){
+    for(int i{};i<2*N-1;++i){
+        int level=(i<N)?i:(2*N-2-i);
+
+        //Star
+        for(int j{};j<N-level;++j){
+            cout<<"*";
         }
-        ++chr;
+
+        //space
+        for(int j{};j<2*level;++j){
+            cout<<" ";
+        }
+
+        //star
+        for(int j{};j<N-level;++j){
+            cout<<"*";
+        }
+
         cout<<"\n";
     }
 }
-
 
 int main(){
     int P{};
@@ -29,7 +44,7 @@ int main(){
     cout<<"Enter the value of N:";
     cin>>P;
 
-    pattern16(P);
+    pattern19(P);
 
     return 0;
 }

@@ -1,21 +1,20 @@
 /*
 Given an integer N, print the following pattern.
 for example N=5
+E
+DE
+CDE
+BCDE
 ABCDE
-ABCD
-ABC
-AB
-A
 */
 
 #include <iostream>
 using namespace std;
 
-void pattern15(int N){
-    
+void pattern18(int N){
     for(int i{};i<N;++i){
-        char chr='A';
-        for(int j{};j<N-i;++j){
+        char chr='A'+N-1-i;
+        for(int j{};j<i+1;++j){
             cout<<chr;
             ++chr;
         }
@@ -23,14 +22,13 @@ void pattern15(int N){
     }
 }
 
-
 int main(){
     int P{};
     
     cout<<"Enter the value of N:";
     cin>>P;
 
-    pattern15(P);
+    pattern18(P);
 
     return 0;
 }

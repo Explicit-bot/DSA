@@ -11,23 +11,21 @@ for example N=5
 #include <iostream>
 using namespace std;
 
-void pattern3(int N){
-    for(int i{};i<N;++i){
+void pattern3(int n){
+    for(int i{};i<n;++i){
         for(int j{};j<i+1;++j){
             cout<<j+1<<" ";
         }
         cout<<"\n";
     }
-
 }
 
 int main(){
-    int P{};
-    
-    cout<<"Enter the value of N:";
-    cin>>P;
+    int N;
 
-    pattern3(P);
+    cout<<"Enter N:";
+    cin>>N;
 
-    return 0;
+    pattern3(N);
+
 }

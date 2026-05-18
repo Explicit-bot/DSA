@@ -72,7 +72,9 @@ Example:
 Character	ASCII Value
 A	        65
 B	        66
+Z           90
 a	        97
+z           122
 
 So:
     char ch = 'A';
@@ -164,12 +166,12 @@ These are created by programmers.
 
 Main user-defined datatypes:
 
-Type	Purpose
-struct	Group different data
-class	OOP programming
-union	Shared memory
-enum	Named constants
-typedef	Alias name
+Type	    Purpose
+struct	    Group different data
+class	    OOP programming
+union	    Shared memory
+enum	    Named constants
+typedef	    Alias name
 
 Will study later in detail 
 

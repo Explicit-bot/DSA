@@ -1,28 +1,37 @@
 /*
 Given an integer N, print the following pattern.
 for example N=5
-A
-AB
-ABC
-ABCD
-ABCDE
+    A
+   ABA 
+  ABCBA
+ ABCDCBA
+ABCDEDCBA
 */
 
 #include <iostream>
 using namespace std;
 
-void pattern14(int N){
-    
+void pattern17(int N){
     for(int i{};i<N;++i){
+        //Space
+        for(int j{};j<N-i-1;++j){
+            cout<<" ";
+        }
+
+        //character
         char chr='A';
-        for(int j{};j<i+1;++j){
+        for(int j{};j<2*i+1;++j){
             cout<<chr;
-            ++chr;
+            if(j<i){
+                ++chr;
+            }
+            else{
+                --chr;
+            }
         }
         cout<<"\n";
     }
 }
-
 
 int main(){
     int P{};
@@ -30,7 +39,7 @@ int main(){
     cout<<"Enter the value of N:";
     cin>>P;
 
-    pattern14(P);
+    pattern17(P);
 
     return 0;
 }

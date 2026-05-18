@@ -15,6 +15,35 @@ for example N=5
 #include <iostream>
 using namespace std;
 
+void pattern9(int n){
+    int i{};
+    int levels =(i<n)?i:2*n-i;
+    for(int i{};i<2*n-1;++i){
+        //space
+
+        //star
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+#include <iostream>
+using namespace std;
+
 //without Levels
 void pattern9(int N){
     for(int i{};i<2*N-1;++i){
@@ -63,3 +92,4 @@ int main(){
 
     return 0;
 }
+*/

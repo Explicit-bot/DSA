@@ -1,29 +1,38 @@
 /*
 Given an integer N, print the following pattern.
 for example N=5
-1
-0 1
-1 0 1
-0 1 0 1
-1 0 1 0 1
+1        1
+12      21
+123    321
+1234  4321
+1234554321
 */
 
 #include <iostream>
 using namespace std;
 
-void pattern11(int N){
+void pattern12(int N){
+    int cnt{1};
     for(int i{};i<N;++i){
-        int start=(i%2==0)?1:0;
-        
+        //number
         for(int j{};j<i+1;++j){
-            cout<<start<<" ";
-            start=1-start;
+            cout<<cnt;
+            ++cnt;
         }
 
+        //space
+        for(int j{};j<2*(N-i-1);++j){
+            cout<<" ";
+        }
+
+        //number
+        for(int j{};j<i+1;++j){
+            --cnt;
+            cout<<cnt;
+        }
         cout<<"\n";
     }
 }
-
 
 int main(){
     int P{};
@@ -31,7 +40,7 @@ int main(){
     cout<<"Enter the value of N:";
     cin>>P;
 
-    pattern11(P);
+    pattern12(P);
 
     return 0;
 }

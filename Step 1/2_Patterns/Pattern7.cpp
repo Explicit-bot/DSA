@@ -11,14 +11,13 @@ for example N=5
 #include <iostream>
 using namespace std;
 
-void pattern7(int N){
-    for(int i{};i<N;++i){
+void pattern7(int n){
+    for(int i{};i<n;++i){
         //Space
-        for(int j{};j<N-i-1;++j){
+        for(int j{};j<n-i-1;++j){
             cout<<" ";
         }
-
-        //star
+        //Star
         for(int j{};j<2*i+1;++j){
             cout<<"*";
         }
@@ -27,12 +26,10 @@ void pattern7(int N){
 }
 
 int main(){
-    int P{};
-    
-    cout<<"Enter the value of N:";
-    cin>>P;
+    int n;
 
-    pattern7(P);
+    cout<<"Enter n:";
+    cin>>n;
 
-    return 0;
+    pattern7(n);
 }

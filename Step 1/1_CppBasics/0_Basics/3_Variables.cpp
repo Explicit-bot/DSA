@@ -59,7 +59,6 @@ II.  No special symbols allowed except underscore (_).
 III. Cannot start with a digit.
 IV.  Cannot use reserved keywords.
 V.   Variable names are case-sensitive.
-
 Examples:
     age
     Age
@@ -81,7 +80,7 @@ Examples:
     return
     class
     public
-    private
+    private etc.
 
 Invalid:
     int while = 5;
@@ -231,6 +230,7 @@ Syntax:
 No value assigned.
 
 Local variables contain garbage values.
+Global,static variables auto initialized to zero.
 
 --------------------------------------------------------------------------------
 Garbage Value
@@ -290,7 +290,6 @@ VI.  Namespace Scope
 A. Local Scope
 --------------------------------------------------------------------------------
 Variables declared inside a function are local variables.
-
 Accessible only inside that function.
 
 Example:
@@ -505,7 +504,7 @@ Example:
 
     cout << &x;
 
-&x gives address of variable.
+&varname gives address of variable.
 
 ================================================================================
                     STORAGE-BASED CLASSIFICATION
