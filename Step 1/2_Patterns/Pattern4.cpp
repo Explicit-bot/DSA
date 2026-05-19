@@ -1,11 +1,12 @@
 /*
+****
 Given an integer N, print the following pattern.
 for example N=5
-1
-2 2
-3 3 3
-4 4 4 4
-5 5 5 5 5
+E
+DE
+CDE
+BCDE
+ABCDE
 */
 
 #include <iostream>
@@ -13,19 +14,23 @@ using namespace std;
 
 void pattern4(int n){
     for(int i{};i<n;++i){
+        char ch='A'+n-1-i;
         for(int j{};j<i+1;++j){
-            cout<<i+1<<" ";
+            cout<<ch;
+            ++ch;
         }
         cout<<"\n";
     }
 }
 
 int main(){
-    int N;
+    int P{};
+    
+    cout<<"Enter the value of N:";
+    cin>>P;
 
-    cout<<"Enter N:";
-    cin>>N;
+    pattern4(P);
 
-    pattern4(N);
-
+    return 0;
 }
+

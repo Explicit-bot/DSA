@@ -39,6 +39,7 @@ int FindGCD(int n1,int n2){
     }
     return n1;
 }
+
 //Optimal Approach(Modulo-based Euclid)
 int FINDGCD(int a, int b){
     while(b != 0){
@@ -48,8 +49,6 @@ int FINDGCD(int a, int b){
     }
     return a;
 }
-
-
 
 int main(){
     int n1{},n2{};
@@ -63,12 +62,10 @@ int main(){
     cout<<"Subtraction-based Euclid:"<<FindGCD(n1,n2)<<"\n";
     cout<<"Optimal Approach(Modulo-based Euclid):"<<FINDGCD(n1,n2)<<"\n";
     
-    return 0;
 }
 
 
 /*
-
 1) Modulo-based Euclid
 Time: O(log(min(n1, n2)))
 
@@ -80,5 +77,4 @@ Time: O(min(n1, n2))
 
 4) Subtraction-based Euclid
 Time: O(max(n1, n2))
-
 */

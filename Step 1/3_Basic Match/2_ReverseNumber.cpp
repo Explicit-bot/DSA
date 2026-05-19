@@ -1,5 +1,6 @@
 /*
-Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0.
+***
+Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-2^31, 2^31 - 1], then return 0.
 Assume the environment does not allow you to store 64-bit integers (signed or unsigned).
 Input: x = 123
 Output: 321
@@ -20,6 +21,44 @@ Note: If a number has trailing zeros, then its reverse will not include them. Fo
 
 #include <iostream>
 #include <climits>
+using namespace std;
+
+int revnum(int N){
+    int revn{};
+
+    while(N!=0){
+        int ld=N%10;
+
+        if(revn>(INT_MAX/10)||(revn==INT_MAX&&ld>7)){
+            return 0;
+        }
+        if(revn<(INT_MIN/10)||(revn==INT_MIN&&ld<-8)){
+            return 0;
+        }
+
+        revn=revn*10 + ld;
+        N/=10;
+    }
+
+    return revn;
+}
+
+int main(){
+    int N{};
+    int rn{};
+    cout<<"Enter your no.";
+    cin>>N;
+
+    rn=revnum(N);
+    if(rn==0){
+        cout<<"Out of limit or zero.";
+    }
+    else{
+        cout<<rn;
+    }
+
+}
+
 /*
 ✅ Why do we include <climits>?
 Because your code uses:
@@ -28,45 +67,8 @@ INT_MIN
 These two constants do NOT come from <iostream> or <bits/stdc++.h> on macOS/Clang.
 They are actually defined inside:
 #include <climits>
-*/
-using namespace std;
-
-int reversenumber(int x){
-        int rev{};
-
-        while(x!=0){
-        int lastdigit=x%10;         //When x is negative, % returns a negative remainder.
-
-        //Positive
-        if(rev>INT_MAX/10||(rev==INT_MAX/10&&lastdigit>7)){
-            return 0;
-        }
-
-        //Negative
-        if(rev<INT_MIN/10||(rev==INT_MIN/10&&lastdigit<-8)){
-            return 0;
-        }
-        rev=(rev*10)+lastdigit;
-        x/=10;
-        }
-        return rev;
-}
-
-int main(){
-    int num{};
-
-    cout<<"Enter the number:";
-    cin>>num;
-
-    int revN=reversenumber(num);
-
-    cout<<"Reverse of the number is :"<<revN<<"\n";
-
-    return 0;
-}
 
 
-/*
 Here’s your code again for reference:
 
 int reversenumber(int x){

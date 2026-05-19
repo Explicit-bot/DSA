@@ -1,4 +1,5 @@
 /*
+***
 Given an integer x, return true if x is a palindrome, and false otherwise.
 
 Input: x = -121
@@ -14,43 +15,42 @@ Follow up: Could you solve it without converting the integer to a string?
 #include <climits>
 using namespace std;
 
-bool isPalindrome(int n) {
+bool ispal(int N){
     int revn{};
-    int num=n;
+    int num{N};  //***
+    while(N!=0){
+        int ld=N%10;
 
-    while(n!=0){
-        int ld=n%10;
-        if(revn<INT_MIN/10||revn>INT_MAX/10){
+        if(revn>(INT_MAX/10)||(revn==INT_MAX&&ld>7)){
             return 0;
         }
-        revn=(revn*10)+ld;
-        n/=10;
+        if(revn<(INT_MIN/10)||(revn==INT_MIN&&ld<-8)){
+            return 0;
+        }
+
+        revn=revn*10 + ld;
+        N/=10;
     }
-
-    /*
-     if(num!=revn){
-        return false;
-    }
-    return true;
-    Instead of this we can use:
-    */
-
-    return num==revn;
-}
-
-int main(){
-    int num{};
-
-    cout<<"Enter no. you want to check:";
-    cin>>num;
-
-    bool ret=isPalindrome(num);
-    if(ret==true){
-        cout<<num<<" is a palindrome.";
+    if(num>=0){
+        return revn==num;
     }
     else{
-        cout<<num<<" is not a palindrome.";
+        return false;
     }
-
-    return 0;
 }
+
+
+int main(){
+    int N{};
+
+    cout<<"Enter your no.";
+    cin>>N;
+
+    if(ispal(N)){
+        cout<<"Palindrome";
+    }
+    else{
+        cout<<"Not palindrome";
+    }
+}
+

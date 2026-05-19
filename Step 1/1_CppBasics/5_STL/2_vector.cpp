@@ -461,6 +461,5 @@ clear()         → Invalidates
 --------------------------------------------------------------
 std::vector provides O(1) random access, amortized O(1) insertion
 at the end, and O(n) insertion/deletion elsewhere due to shifting.
-
 ==============================================================
 */

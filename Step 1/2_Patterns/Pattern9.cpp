@@ -1,81 +1,39 @@
 /*
 Given an integer N, print the following pattern.
 for example N=5
-    *
-   ***
-  *****
- *******
-*********
- *******
-  *****
-   ***
-    *
+                level   i   space
+1        1      0       0   8
+12      21      1       1   6
+123    321      2       2   4
+1234  4321      3       3   2
+1234554321      4       4   0
+1234  4321      3       5   2
+123    321      2       6   4
+12      21      1       7   6
+1        1      0       8   8
 */
 
 #include <iostream>
 using namespace std;
 
 void pattern9(int n){
-    int i{};
-    int levels =(i<n)?i:2*n-i;
     for(int i{};i<2*n-1;++i){
+        int cnt{};
+        int level=(i<n)?i:(2*n-i-2);
+        //num
+        for(int j{};j<level+1;++j){
+            ++cnt;
+            cout<<cnt;
+        }
         //space
-
-        //star
-
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-#include <iostream>
-using namespace std;
-
-//without Levels
-void pattern9(int N){
-    for(int i{};i<2*N-1;++i){
-        int spaces=(i<N)?(N-i-1):(i-N+1);
-        int stars=(i<N)?(2*(i)+1):(2*(2*N-i)-3);   //think yourself
-
-        //Space
-        for(int j{};j<spaces;++j){
+        for(int j{};j<(2*(n-level-1));++j){
             cout<<" ";
         }
 
-        //star
-        for(int j{};j<stars;++j){
-            cout<<"*";
-        }
-        cout<<"\n";
-    }
-}
-
-//Using levels concept
-void Pattern9(int N){
-    for(int i{};i<2*N-1;++i){
-        int level=(i<N)?i:(2*N-i)-2;
-
-        //space
-        for(int j{};j<N-level-1;++j){
-            cout<<" ";
-        }
-
-        //star
-        for(int j{};j<2*level+1;++j){
-            cout<<"*";
+        //num
+        for(int j{};j<level+1;++j){
+            cout<<cnt;
+            --cnt;
         }
         cout<<"\n";
     }
@@ -88,8 +46,6 @@ int main(){
     cin>>P;
 
     pattern9(P);
-    Pattern9(P);
 
     return 0;
 }
-*/

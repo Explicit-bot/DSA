@@ -1,4 +1,6 @@
 /*
+Given an integer N, print the following pattern.
+for example N=5
 *       * 
   *   *   
     *     
@@ -9,11 +11,7 @@
 #include <iostream>
 using namespace std;
 
-int main() {
-    int n;
-    cout << "Enter size of square grid: ";
-    cin >> n;
-
+void pattern0(int n){
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
             if (i == j || i + j == n - 1)  
@@ -21,8 +19,13 @@ int main() {
             else
                 cout << "  ";
         }
-        cout << endl;
+        cout << "\n";
     }
+}
+int main() {
+    int n;
+    cout << "Enter size of square grid: ";
+    cin >> n;
 
-    return 0;
+    pattern0(n);
 }
