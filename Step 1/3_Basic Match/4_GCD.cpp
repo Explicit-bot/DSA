@@ -1,16 +1,17 @@
 /*
 You are given two integers n1 and n2. You need find the Greatest Common Divisor (GCD) of the two given numbers. Return the GCD of the two numbers.
 
-The Greatest Common Divisor (GCD) of two integers is the largest positive integer that divides both of the integers.
+The Greatest Common Divisor (GCD) of two integers is the largest positive integer that divides both of the integers. 
 */
+
 #include <iostream>
 using namespace std;
 
 //Brutte Force approach
-int findgcd(int n1,int n2){
+int findgcdBrute(int n,int m){
     int gcd{1};
-    for(int i{};i<min(n1,n2);++i){
-        if(n1%i==0 && n2%i==0){
+    for(int i{};i<min(n,m);++i){
+        if(n%i==0 && m%i==0){
             gcd=i;
         }
     }
@@ -57,7 +58,7 @@ int main(){
     cin>>n1>>n2;
 
     
-    cout<<"Brute Force Approach:"<<findgcd(n1,n2)<<"\n";
+    cout<<"Brute Force Approach:"<<findgcdBrute(n1,n2)<<"\n";
     cout<<"Better Approach:"<<findGcd(n1,n2)<<"\n";
     cout<<"Subtraction-based Euclid:"<<FindGCD(n1,n2)<<"\n";
     cout<<"Optimal Approach(Modulo-based Euclid):"<<FINDGCD(n1,n2)<<"\n";
