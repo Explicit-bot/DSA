@@ -1,4 +1,5 @@
 /*
+***
 💡 What is a Perfect Number?
 A perfect number is a positive integer that is equal to the sum of all its proper divisors (excluding itself).
 ⸻
@@ -7,34 +8,37 @@ A number n is perfect if:
 sum of divisors of n (excluding n) = n
 */
 
-#include <iostream>
+#include<iostream>
+using namespace std;
+
+bool isperfectnumber(int n){
+    if(n<=1){
+        return false;
+    }
+
+    int sum{1};  //as 1 is always a proper divisor.
+    for(int i{2};i*i<=n;++i){
+        if(n%i==0){
+            sum+=i;
+            if(n/i!=i){
+                sum+=(n/i);
+            }
+        }
+    }
+
+    return sum==n;
+}
 
 int main(){
-
     int n{};
-    int i{1};
-    int factorcount{1};
-    int sum{};
 
-    std::cout<<"Enter no.:";
-    std::cin>>n;
+    cout<<"Enter your no.:";
+    cin>>n;
 
-    while(i<n){
-        if (n%i==0)
-        {
-            sum+=i;
-            std::cout<<"Factor "<<factorcount<<" ="<<i<<std::endl;   
-            ++factorcount;
-        }
-        ++i;
-    }
-    std::cout<<"Sum of Factors is "<<sum<<"\n";
-    if(sum==n){
-        std::cout<<n<<" is a perfect number."<<std::endl;
+    if(isperfectnumber(n)){
+        cout<<n<<" is a perfect number.";
     }
     else{
-        std::cout<<n<<" is not a perfect number."<<std::endl;
+        cout<<n<<" is not a perfect number.";
     }
-    return 0;
-
 }

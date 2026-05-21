@@ -1,5 +1,70 @@
 /*
                 ====================================================
+                                    Divison rule
+                ====================================================
+•Integer Division Rule
+Expression	            Result
+int / int	            int
+float / int	            float
+int / float	            float
+double / anything	    double
+
+Example
+5 / 2     → 2
+5.0 / 2   → 2.5
+5 / 2.0   → 2.5
+
+Explicit Type Casting (Manual Conversion)
+•means you manually force conversion using cast syntax.
+
+Syntax
+(type) expression
+
+(float)22 → 22.0
+22.0 / 7 → double-precision floating-point division
+Result → 3.142857
+
+⚠️ Important
+(float)(22 / 7)   // ❌ WRONG → still 3.0
+•Casting must be done before division, not after.
+
+4️⃣ Implicit Type Conversion (Automatic)
+C++ automatically converts smaller types to larger ones.
+Examples
+22.0 / 7     → double
+22 / 7.0     → double
+
+Why?
+int is automatically promoted to double
+Result becomes double
+
+📌 Note
+22.0/7 and 22/7.0 both give double
+double has more precision than float
+
+5️⃣ float vs double 
+Type	    Size	    Precision
+float	    4 bytes	    ~6–7 digits
+double	    8 bytes	    ~15–16 digits
+
+Rule in CP & Real Programs
+✅ Prefer double
+❌ Avoid float unless memory is critical
+
+NaN stands for “Not a Number”.
+0.0 / 0.0        → NaN
+sqrt(-1)         → NaN
+log(-5)          → NaN
+
+• NaN is NOT equal to anything
+    NaN == NaN   → false ❌
+    
+    Correct way to check NaN
+    isnan(x)
+    
+    Never do:
+    if (x == NaN)   // ❌ WRONG
+                ====================================================
                                     Divison By Zero
                 ====================================================
 if (a / 0 == 2)

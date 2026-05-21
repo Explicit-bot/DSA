@@ -300,6 +300,23 @@ What remove() does:
 Shifts unwanted elements to the end
 DOES NOT change container size
 
+Return type:
+Internally:
+Before:
+1 2 3 2 4
+After shifting:
+1 3 4 ? ?
+The last positions become garbage/unspecified values.
+The vector size is STILL 5.
+it points here:
+1 3 4 | ? ?
+        ^
+       it
+
+Meaning:
+[v.begin(), it)
+contains the valid remaining elements.
+
 Correct CP Usage (Erase–Remove Idiom):
     vector<int> v10 = {1,2,3,2,4};
     v10.erase(remove(v10.begin(), v10.end(), 2), v10.end());

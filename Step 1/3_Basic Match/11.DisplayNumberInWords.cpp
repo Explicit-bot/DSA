@@ -1,60 +1,71 @@
-//Display a number in words.
+//***Display a numbers in words.
 #include <iostream>
+using namespace std;
+
+vector<int> displaynum(int n){
+    vector<int> num{};
+
+    if(n==0){
+        num.push_back(0);
+    }
+    else if(n<0){
+        cout<<"Minus ";
+        n=-n;
+    }
+
+    while(n>0){
+        int rem=n%10;
+        num.push_back(rem);
+        n/=10;
+    }
+
+   return num;
+}
 
 int main(){
     int n{};
-    char rev[10];
-    int i{};
-    int r{};
 
-    std::cout<<"Enter your no:"<<std::flush;
-    std::cin>>n;
-
-    while(n>0){
-        r=n%10;
-        rev[i]=r+'0';
-        n=n/10;
-        ++i;
-    }
-    rev[i]='\0';
-    while(i>0){
-        --i;
-        switch(rev[i]-'0'){         //Arithmetic on char converts them to int automatically.
-                                    //switch() needs an integral type (int, char, short, enum).
+    cout<<"Enter your no.:";
+    cin>>n;
+    
+    vector<int> disp=displaynum(n);
+    
+    for(int x:disp){
+        switch(x){           //Arithmetic on char converts them to int automatically.
+                             //switch() needs an integral type(int, char, enum).
             case 0: 
-                std::cout<<"Zero ";
-            break;
+                cout<<"Zero ";
+                break;
             case 1: 
-                std::cout<<"One ";
-            break;
+                cout<<"One ";
+                break;
             case 2: 
-                std::cout<<"Two ";
-            break;
+                cout<<"Two ";
+                break;
             case 3: 
-                std::cout<<"Three ";
-            break;
+                cout<<"Three ";
+                break;
             case 4: 
-                std::cout<<"Four ";
-            break;
+                cout<<"Four ";
+                break;
             case 5: 
-                std::cout<<"Five ";
-            break;
+                cout<<"Five ";
+                break;
             case 6: 
-                std::cout<<"Six ";
-            break;
+                cout<<"Six ";
+                break;
             case 7: 
-                std::cout<<"Seven ";
-            break;
+                cout<<"Seven ";
+                break;
             case 8: 
-                std::cout<<"Eight ";
-            break;
+                cout<<"Eight ";
+                break;
             case 9: 
-                std::cout<<"Nine ";
-            break;
+                cout<<"Nine ";
+                break;
             default:
-                std::cout<<"invalid";
+                cout<<"invalid";
             break;
         }
     }
-    
 }

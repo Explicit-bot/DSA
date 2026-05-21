@@ -89,6 +89,16 @@ binary_search() -> search in sorted container
 sort(v.begin(), v.end());
 reverse(v.begin(), v.end());
 
+STL algorithms use half-open ranges:
+[first, last)
+meaning:
+start included
+end excluded
+
+e.g: // From array
+int arr[] = {1, 2, 3};
+vector<int> v5(arr, arr + 3);
+
 ====================================================
   5️⃣ FUNCTORS (Function Objects)
 ====================================================
@@ -139,7 +149,6 @@ What happens internally:
 4️⃣ New element is inserted
 
 ⏱️ Time Complexity = O(n)
-
 ==============================================================
 ⚖️ Why is push_back() still O(1) AMORTIZED?
 ==============================================================
@@ -160,5 +169,4 @@ Total cost of all push_back operations = O(n)
 Total number of operations               = n
 
 👉 Average cost per operation = O(n) / n = O(1)
-
 */

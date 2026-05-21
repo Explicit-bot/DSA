@@ -86,8 +86,9 @@ int main(){
     sort(arr, arr+4);
 
     cout << "Sorted Pairs:\n";
-    for(auto &p : arr)
+    for(auto &p : arr){
         cout << p.first << " " << p.second << "\n";
-
+    }
+    
     return 0;
 }

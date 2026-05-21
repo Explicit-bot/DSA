@@ -1,4 +1,5 @@
 /* 
+***
 Given an integer n, write a function to print all numbers from 1 to n (inclusive) using recursion.
 You must not use any loops such as for, while, or do-while.
 The function should print each number on a separate line, in increasing order from 1 to n.
@@ -8,43 +9,40 @@ Print in reverse order too using Recursion and backtracking
 #include <iostream>
 using namespace std;
 
-//Recursion:
-void PrintNumbers(int n, int i=1) {
-    if (i > n) {
+//Recursion(Reverse order):
+void print1tonrev(int n){
+    if(n==0){
         return;
     }
+    cout<<n<<"\n";
+    print1tonrev(n-1);
+}
 
-    cout << i << "\n";
-    PrintNumbers(n, i + 1);
+//Recursion
+void print1ton(int n,int i=1){
+    if(i>n){
+        return;
+    }
+    cout<<i<<"\n";
+    print1ton(n,i+1);
 }
 
 //Backtracking
-void printNumbers(int n) {
+void print1tonbt(int n){
     if(n==0){
         return;
     }
-    
-    printNumbers(n-1);
+    print1tonbt(n-1);
     cout<<n<<"\n";
-}
-
-//Using recursion(Reverse order)
-void Print(int n){
-    if(n==0){
-        return;
-    }
-    cout<<n<<"\n";
-    Print(n-1);
 }
 
 //Using Backtracking(Reverse order)
-void print(int n, int i=1) {
-    if (i > n) {
+void print1tonbtrev(int n,int i=1){
+    if(i>n){
         return;
     }
-
-    print(n,i+1);
-    cout << i << "\n";
+    print1tonbtrev(n,i+1);
+    cout<<i<<"\n";
 }
 
 int main(){
@@ -53,16 +51,16 @@ int main(){
     cin>>num;
 
     cout<<"Using Recursion:\n";
-    PrintNumbers(num);
+    print1ton(num);
 
     cout<<"Using backtracking:\n";
-    printNumbers(num);
+    print1tonbt(num);
 
     cout <<"Using Recursion(In reverse order):\n";
-    Print(num);
+    print1tonrev(num);
     
     cout<<"Using backtracking(In reverse order):\n";
-    print(num);
+    print1tonbtrev(num);
 
     return 0;
 }

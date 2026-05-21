@@ -27,21 +27,23 @@
 	    •Write your own with std::vector<int> and manual multiplication
 */
 #include<iostream>
+using namespace std;
 
 int main(){
     int n{};
-    unsigned long long int fact{1};
-    std::cout<<"Enter no. whose factorial is req.:";
-    std::cin>>n;
-    /*
-	•i starts at 1.
-	•fact starts at 1 (since factorial is a product).
-    */
-    for( int i{1};i<=n;++i) 
-    {
-        fact*=i;
-    }
-    std::cout<< n<<"! ="<<fact<<std::endl;
+    unsigned long long int fact{1}; //fact starts at 1 (since factorial is a product)
+    cout<<"Enter no. whose factorial is req.:";
+    cin>>n;
 
+    if(n<0||n>20){
+        cout<<"Factorial not possible- Either negative or > 20";
+    }
+    else{
+        for( int i{2};i<=n;++i){ // i starts at 2 as product with 1 same result
+        fact*=i;
+        }
+        cout<< n<<"! ="<<fact<<"\n";
+    }
+    
     return 0;
 }

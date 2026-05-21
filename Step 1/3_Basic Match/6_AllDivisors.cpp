@@ -1,4 +1,5 @@
 /*
+***
 You are given an integer n. You need to find all the divisors of n. Return all the divisors of n as an array or list in a sorted order.
 A number which completely divides another number is called it's divisor.
 */
@@ -8,34 +9,33 @@ A number which completely divides another number is called it's divisor.
 using namespace std;
 
 //Brute force Approach
-vector<int> alldivisors(int n){
-    vector <int> res{};
+vector<int> alldivisorsbrute(int n){
+    vector<int> div{};
     for(int i{1};i<=n;++i){
         if(n%i==0){
-            res.push_back(i);
+            div.push_back(i);
         }
-   }
-   return res;
+    }
+    return div;
 }
 
-//Optimal Approach
-vector<int> AllDivisors(int n){
-    vector <int> res{};
-    for(int i{1};i*i<=n;++i){   //do not initialize i with zero coz division by i 
+//Better Approach
+vector<int> alldivisorsbetter(int n){
+    vector<int> div{};
+    for(int i{1};i*i<=n;++i){
         if(n%i==0){
-            res.push_back(i);
-            if(i!=n/i){
-                res.push_back(n/i);
+            div.push_back(i);
+            if(n/i!=i){
+                div.push_back(n/i);
             }
         }
     }
-
-    sort(res.begin(), res.end());
-    return res;
+    sort(div.begin(),div.end());
+    return div;
 }
 
-//Ultra-Optimized Version (No Sorting)
-vector<int> ALLDivisors(int n){
+//Optimal approach (No Sorting)
+vector<int> alldivisorsoptimal(int n){
     vector<int> small, large;
     for(int i = 1; i * i <= n; ++i){
         if(n % i == 0){
@@ -58,16 +58,22 @@ int main(){
     cout<<"Enter the number:";
     cin>>num;
 
-    vector <int> div=alldivisors(num);
-    vector <int> Div=AllDivisors(num);
+    vector <int> div=alldivisorsbrute(num);
+    vector <int> Div=alldivisorsbetter(num);
+    vector<int> DIV=alldivisorsoptimal(num);
 
     cout<<"Brute Force Approach"<<"\n";
     for(auto x:div){
         cout<<x<<" ";
     }
 
-    cout<<"\n"<<"Optimal Approach"<<"\n";
+    cout<<"\n"<<"Better Approach"<<"\n";
     for(auto x:Div){
+        cout<<x<<" ";
+    }
+
+    cout<<"\n"<<"Optimal Approach"<<"\n";
+    for(auto x:DIV){
         cout<<x<<" ";
     }
     return 0;
@@ -80,13 +86,11 @@ int main(){
 O(n)
 
 💾 Space Complexity
-O(n)   // storing divisors
+O(k)   // storing divisors
 
 ⚠️ Drawbacks
 * Very slow for large `n`
 * Checks unnecessary numbers
-
-
 
 2️⃣ Optimal Approach (√n Method)
 📐 Time Complexity Calculation
@@ -103,21 +107,19 @@ O(√n log √n) ≈ O(√n log n)
 O(√n log n)
 
 💾 Space Complexity
-O(√n)
+O(√k)
 
 🚀 Ultra-Optimized Version (No Sorting)
-
 ⏱️ Time Complexity
-O(√n)
+O(√n)+O(d)      
+d is divisor count
 
 🧪 Edge Cases
-
 | Case           | Input | Output     |
 | -------------- | ----- | ---------- |
 | n = 1          | 1     | 1          |
 | Prime          | 7     | 1 7        |
 | Perfect Square | 16    | 1 2 4 8 16 |
-
 
  ✅ Summary
 | Approach          | Time        | Sorted | Recommended |

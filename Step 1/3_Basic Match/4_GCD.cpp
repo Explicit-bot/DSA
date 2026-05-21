@@ -1,16 +1,20 @@
 /*
+***
 You are given two integers n1 and n2. You need find the Greatest Common Divisor (GCD) of the two given numbers. Return the GCD of the two numbers.
 
-The Greatest Common Divisor (GCD) of two integers is the largest positive integer that divides both of the integers. 
+The Greatest Common Divisor (GCD) of two integers is the largest positive integer that divides both of the integers.
+Theorems for GCD:-
+GCD(a,b) = GCD(a-b,b)
+GCD(a,b) = GCD(b, a%b)
 */
 
 #include <iostream>
 using namespace std;
 
-//Brutte Force approach
-int findgcdBrute(int n,int m){
+//Traversal approach - Brute
+int findgcdtrav(int n,int m){
     int gcd{1};
-    for(int i{};i<min(n,m);++i){
+    for(int i{1};i<=min(n,m);++i){   //can't initialize i by zero 
         if(n%i==0 && m%i==0){
             gcd=i;
         }
@@ -18,37 +22,37 @@ int findgcdBrute(int n,int m){
     return gcd;
 }
 
-//Better Approach
-int findGcd(int n1,int n2){
-    for(int i{min(n1,n2)};i>0;--i){
-        if(n1%i==0 && n2%i==0){
+//Reverse traversal Approach - Better brute
+int findgcdrevtrav(int n,int m){
+    for(int i{min(n,m)};i>0;--i){
+        if(n%i==0 && m%i==0){
            return i;
         }
     }
     return 1;
 }
 
-//Subtraction-based Euclidean Algorithm 
-int FindGCD(int n1,int n2){
-    while(n1!=n2){
-        if(n1>n2){
-            n1-=n2;
+//Subtraction-based Euclidean Algorithm - Better approach (just worst case problem)
+int findgcdSubtraction(int n,int m){
+    while(n!=m){
+        if(n>m){
+            n-=m;
         }
-        else if(n2>n1){
-            n2-=n1;
+        else if(m>n){
+            m-=n;
         }
     }
-    return n1;
+    return n;
 }
 
-//Optimal Approach(Modulo-based Euclid)
-int FINDGCD(int a, int b){
-    while(b != 0){
-        int rem = a % b;
-        a = b;
-        b = rem;
+//Modulo-based Euclid approach - Most optimal
+int findgcdmodulo(int n,int m){
+    while(m!=0){
+        int rem=n%m;
+        n=m;
+        m=rem;
     }
-    return a;
+    return n;
 }
 
 int main(){
@@ -58,24 +62,26 @@ int main(){
     cin>>n1>>n2;
 
     
-    cout<<"Brute Force Approach:"<<findgcdBrute(n1,n2)<<"\n";
-    cout<<"Better Approach:"<<findGcd(n1,n2)<<"\n";
-    cout<<"Subtraction-based Euclid:"<<FindGCD(n1,n2)<<"\n";
-    cout<<"Optimal Approach(Modulo-based Euclid):"<<FINDGCD(n1,n2)<<"\n";
+    cout<<"Brute Force Approach:"<<findgcdtrav(n1,n2)<<"\n";
+    cout<<"Better Approach:"<<findgcdrevtrav(n1,n2)<<"\n";
+    cout<<"Subtraction-based Euclid:"<<findgcdSubtraction(n1,n2)<<"\n";
+    cout<<"Optimal Approach(Modulo-based Euclid):"<<findgcdmodulo(n1,n2)<<"\n";
     
 }
 
 
 /*
-1) Modulo-based Euclid
+1) Modulo-based Euclid 
 Time: O(log(min(n1, n2)))
+In Euclid’s algorithm:Every 1 or 2 iterations reduce the numbers by at least half.
+THIS is why logarithm appears.
 
-2) Reverse brute force (min → 1)
+2) Reverse brute force (min → 1) worst case is min -> 1 normally stops early
 Time: O(min(n1, n2))
 
-3) Brute force (1 → min)
+3) Brute force (1 → min) always goes till min
 Time: O(min(n1, n2))
 
-4) Subtraction-based Euclid
+4) Subtraction-based Euclid - conceptually better because reduces the problem
 Time: O(max(n1, n2))
 */

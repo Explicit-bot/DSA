@@ -126,5 +126,4 @@ SET / MAP:
 
 CP RULE:
 Never store vector iterators across modifications
-
 */

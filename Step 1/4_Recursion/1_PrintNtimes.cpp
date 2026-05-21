@@ -1,13 +1,37 @@
 /*   
-Given an integer N, write a program to print your name N times.
+Given an integer N, write a program to print any name N times.
 */
 
 
 #include <iostream>
 using namespace std;
 
-//Kya bakwass likhi hai tune ye
+void print(int n,string name){
+    if(n==0){
+        return;
+    }
+    cout<<name<<"\n";
+    print(n-1,name);
+}
+
+int main(){
+    int num{};
+    string name{};
+    cout<<"Enter the number:";
+    cin>>num;
+
+    cout<<"Enter name to print:";
+    cin.ignore();
+    getline(cin,name);
+
+    print(num,name);
+
+    return 0;
+}
+
+
 /*
+What i wrote first time
 int cnt{};
 void PrintN(int n){
     if(cnt==n){
@@ -18,25 +42,3 @@ void PrintN(int n){
     PrintN(n);
 }
 */
-
-//Good
-void Print(int n){
-    if(n==0){
-        return;
-    }
-    cout<<"Hello,Duniya!\n";
-    Print(n-1);
-}
-
-int main(){
-    int num{};
-    
-    cout<<"Enter the number:";
-    cin>>num;
-  
-    Print(num);
-  //PrintN(num);
-
-    return 0;
-}
-
