@@ -4,13 +4,37 @@ An array is a collection of elements of the same data type, stored contiguously 
 Each element is accessed by its index, starting from 0.
 
 🔹 2. Array Declaration & Initialization
-        int arr[5];       // Declares an array of 5 ints (default values are garbage)
-        int arr2[5] = {1, 2, 3};    // Partial init → {1, 2, 3, 0, 0}
-        int arr3[] = {1, 2, 3, 4};  // Compiler decides size → size = 4
+        I. Array Declaration Without Initialization
+        int A[5];  // Declared but not initialized — contains garbage values
+
+        II. Array Declaration With Partial Initialization
+        int A[5] = {2, 4};  // First 2 values set, rest are 0
+        🧠 Output: 2 4 0 0 0 — because unspecified values get 0.
+
+        III. Array Declaration With Complete Initialization
+        int A[5] = {2, 4, 6, 8, 10};
+
+        IV. Compiler-Sized Array Declaration
+        int A[] = {10, 20, 30, 40};  // Compiler sets size to 4
+        🧠 This is useful when you're just initializing and don't want to count manually.
+        
+        * Only int A[]; is incorrect because in C and C++, when declaring an array without specifying its size, you must initialize it with values. Without a size or initialization, the declaration is considered invalid.
+
+🔹 3. Accessing Array Elements via Index
+    int A[5] = {1, 2, 3, 4, 5};
+
+    First element: A[0]
+    Third element: A[2]
+    last element: A[4]
+
+🔹 4. Modify Array Elements
+    int A[5] = {1, 2, 3, 4, 5};
+    A[2] = 10;  // Modify 3rd element
+🧠 Output: 1 2 10 4 5 
 
 🔹 3. Input/Output
         int n, arr[100];
-        std::cin >> n;     //n<=100
+        std::cin >> n;     //n<100 
         
         //Input
         for(int i = 0; i < n; ++i)
@@ -30,9 +54,12 @@ Each element is accessed by its index, starting from 0.
 •Access time: O(1)
 •Works great with loops and pointer arithmetic
 
+Note:-
+•Global & static arrays live in global memory — C++ automatically sets them to 0 for you.
+•Local arrays live in stack memory, and the compiler doesn’t clean them up → so you get random garbage.
+
 🧠 Where are arrays stored in C++?
 🔹 It depends on how the array is declared:
-                
 ✅ 1. Stack Memory — for local arrays
         int A[5] = {1, 2, 3, 4, 5};  // Local array
 •Stored in the stack.
@@ -86,9 +113,8 @@ Even though it’s inside a function 👆
 👉 it is NOT on stack
 📍 Stored in static memory
 ⏳ Lifetime = whole program
-🟢 Initialized only once
+🟢 Initialized only once meaning that it is created once and it persists for whole program
 
-❌ What a static array is NOT
 Stack array vs Static array
 void f() {
     int a[3];        // stack array
@@ -101,8 +127,34 @@ Lifetime	        Function only	        Whole program
 Init	                Garbage	                Zero
 Persists value	        ❌	                ✅
 
+E.g:
+void fun() {
+    static int arr[3] = {1,2,3};
+    int arr2[3]={1,2,3};
+    arr[0]++;
+    arr2[0]++;
 
-❓ What does this do in C++:
+    cout <<"Static array:"<<arr[0] << endl;
+    cout <<"Local array:"<<arr2[0] << endl;
+}
+
+int main() {
+    fun();
+    fun();
+    fun();
+}
+
+output:
+Static array:2
+Local array:2
+
+Static array:3
+Local array:2
+
+Static array:4
+Local array:2
+
+❓ What does cout << array do in C++:
         int A[5] = {10, 20, 30, 40, 50};
         std::cout << A;
 •Here,A is actually a pointer to the first element: A == &A[0]
@@ -112,32 +164,43 @@ This will not print the array elements.
 🔸 Instead, it prints the memory address of the first element of the array A.
         For example, you might see something like:
                 0x7ffeefbff5a0
-
-✅ Correct Way to Print the Array:(mentioned below)
 */
 #include <iostream>
 
-int main(){
-        int n, arr[10];
-        std::cout << "Enter number of elements (max 10): ";
-        std::cin >> n;
-        /*
-        If n = 7, the program only takes input for the first 7 elements.
-        The remaining elements (arr[7], arr[8], arr[9]) are uninitialized,
-        so accessing them may give garbage values.
-        */
-        for(int i = 0; i < n; ++i){
-                std::cout<<"Enter element no. "<<i<<":";
-                std::cin >> arr[i];
-        }
+// This is a **global array**
+int globalArr[5];  // ✅ Automatically set to 0
+
+void testStatic() {
+    // This is a **static array**
+    static int staticArr[5];  // ✅ Also set to 0
+
+    std::cout << "Static Array:\n";
+    for (int i = 0; i < 5; ++i)
+        std::cout << staticArr[i] << ' ';
+    std::cout << '\n';
+}
+
+int main() {
+    // This is a **local array**
+    int localArr[5];  // ❌ Will contain garbage values
+
+    std::cout << "Global Array:\n";
+    for (int i = 0; i < 5; ++i)
+        std::cout << globalArr[i] << ' ';
         
-        for(int i = 0; i < 10; ++i){
-                std::cout << arr[i] << " ";
+    std::cout << '\n';
 
-        }
-        std::cout<<"\n";
+    std::cout << "Local Array:\n";
+    for (int i = 0; i < 5; ++i)
+        std::cout << localArr[i] << ' ';  // ❌ Garbage
+    std::cout << '\n';
 
-        std::cout<<arr+1;
+    
+    testStatic();
+    
+    std::cout<<localArr<<"\n";  //Its a pointer so it prints address.
+    
+    return 0;
 }
 
 /*

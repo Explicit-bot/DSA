@@ -43,6 +43,60 @@ Display all Elements using For Each loop when partial initialized
 output:2 4 6 0 0 0
 **As we can see it works on the basis of size of an array and not on no. of elements initialized.
 
+instead of using int or float we can also write auto
+-> When auto
+    float A[]={2.5f,5.6f,9,8,7};
+    
+    for(auto x:A){
+        cout<<x<<" ";
+    }   
+output:2.5,5.6,9,8,7
+
+why use auto instead of just int ??
+When you're working with 2D arrays or containers like vectors, each row is not an int — it’s an array or a vector.
+Example with a 2D array:
+        int A[2][3] = {{1,2,3}, {4,5,6}};
+        
+A row here is of type: int[3]
+You can’t write:
+        for (int row : A)       //INVALID        
+You write:
+        for (int (&row)[3] : A)         //VALID
+
+This is the exact type auto& deduces in a range-based for loop:
+        for (auto& row : A)  // Same as: int (&row)[3]
+
+So instead of writing this long type, auto& does the same job safely and clearly.
+*/
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    int A[]={2,4,6,8,10};
+    
+    for(int x:A){
+        cout<<x<<" ";
+    }   
+    int B[2][3]{};
+
+    for (auto &row : B) {
+        for (auto& elem : row) {        //auto &row and auto& row are same thing
+            cout<<"Enter element:";
+            cin>> elem;
+        }
+    }
+
+
+    for (auto &row : B) {
+        for (auto& elem : row) {
+            cout << elem << " ";
+        }
+        cout << "\n";
+    }
+}
+
+/*
 •Some Examples:-
 ->when int x
     float A[]={2.5f,5.6f,9,8,7};
@@ -73,24 +127,4 @@ Because:
 	•	std::cout prints only the digits it needs to represent the number.
 	•	Even though the values are floats internally, std::cout prints them like 9 or 8 if there’s no decimal part.
 	•	This is purely a formatting thing, not a type issue.
-
-instead of using int or float we can also write auto
--> When auto
-    float A[]={2.5f,5.6f,9,8,7};
-    
-    for(auto x:A){
-        cout<<x<<" ";
-    }   
-output:2.5,5.6,9,8,7
 */
-
-#include<iostream>
-using namespace std;
-
-int main(){
-    int A[]={2,4,6,8,10};
-    
-    for(int x:A){
-        cout<<x<<" ";
-    }   
-}
