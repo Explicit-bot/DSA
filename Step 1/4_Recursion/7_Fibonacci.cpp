@@ -1,286 +1,341 @@
-/*************************************************************************************************
- 🧠 FIBONACCI NUMBER 
-**************************************************************************************************
+/*
+***
+The Fibonacci numbers, commonly denoted F(n) form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is,
 
-====================================
-📌 PROBLEM STATEMENT
-====================================
-The Fibonacci numbers form a sequence such that each number is the sum
-of the two preceding ones.
+F(0) = 0, F(1) = 1
+F(n) = F(n - 1) + F(n - 2), for n > 1.
+Given n, calculate F(n).
 
-Mathematically:
-F(0) = 0
-F(1) = 1
-F(n) = F(n - 1) + F(n - 2), for n > 1
-
-------------------------------------
-📥 INPUT
-------------------------------------
-An integer n (0 ≤ n ≤ 30)
-
-------------------------------------
-📤 OUTPUT
-------------------------------------
-Return the nth Fibonacci number F(n)
-
-------------------------------------
-🧪 EXAMPLES
-------------------------------------
-Input:  n = 2
+Example 1:
+Input: n = 2
 Output: 1
+Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
 
-Input:  n = 3
+Example 2:
+Input: n = 3
 Output: 2
+Explanation: F(3) = F(2) + F(1) = 1 + 1 = 2.
 
-Input:  n = 4
+Example 3:
+Input: n = 4
 Output: 3
+Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
+ 
+Constraints:
+0 <= n <= 30
+*/
 
-**************************************************************************************************
-📌 WHY THIS PROBLEM IS IMPORTANT?
---------------------------------------------------------------------------------------------------
-• Classic recursion problem
-• Perfect example of:
-  - Overlapping subproblems
-  - Optimal substructure
-• Foundation of Dynamic Programming (DP)
-• Frequently asked in interviews and exams
-**************************************************************************************************/
 #include <iostream>
+#include <vector>
 using namespace std;
 
-/*************************************************************************************************
- 🔴 APPROACH 1: BRUTE FORCE (PURE RECURSION)
-**************************************************************************************************
-🧠 IDEA:
-Directly implement the mathematical definition.
-
-F(n) = F(n-1) + F(n-2)
-
-------------------------------------
-🌳 RECURSION TREE (n = 4)
-------------------------------------
-fib(4)
-├── fib(3)
-│   ├── fib(2)
-│   │   ├── fib(1) -> 1
-│   │   └── fib(0) -> 0
-│   └── fib(1) -> 1
-└── fib(2)
-    ├── fib(1) -> 1
-    └── fib(0) -> 0
-
-Notice:
-• fib(2) repeated
-• fib(1) repeated multiple times
-
-------------------------------------
-🧪 DRY RUN (n = 4)
-------------------------------------
-fib(4)
-= fib(3) + fib(2)
-= (fib(2)+fib(1)) + (fib(1)+fib(0))
-= ((1+0)+1) + (1+0)
-= 3
-
-------------------------------------
-⏱ TIME COMPLEXITY
-------------------------------------
-O(2^n) ❌ (exponential)
-
-------------------------------------
-🧠 SPACE COMPLEXITY
-------------------------------------
-O(n) (recursion stack)
-
-------------------------------------
-⚠️ NOTE
-------------------------------------
-• Only for learning recursion
-• NOT recommended in real applications
-*************************************************************************************************/
-
-int fib_bruteforce(int n) {
-    if (n <= 1)
-        return n;
-    return fib_bruteforce(n - 1) + fib_bruteforce(n - 2);
-}
-
-/*************************************************************************************************
- 🟡 APPROACH 2: MEMOIZATION (TOP-DOWN DYNAMIC PROGRAMMING)
-**************************************************************************************************
-🧠 IDEA:
-• Store results of subproblems
-• Avoid recomputation
-• Uses recursion + array (dp)
-
-------------------------------------
-🧪 DRY RUN (n = 4)
-------------------------------------
-dp initially = [-1, -1, -1, -1, -1]
-
-fib(4)
-→ fib(3) + fib(2)
-
-fib(2) computed once → dp[2] = 1
-fib(3) computed once → dp[3] = 2
-fib(4) = dp[3] + dp[2] = 3
-
-------------------------------------
-⏱ TIME COMPLEXITY
-------------------------------------
-O(n)
-
-------------------------------------
-🧠 SPACE COMPLEXITY
-------------------------------------
-O(n) (dp array + recursion stack)
-*************************************************************************************************/
-
-int fib_memo_helper(int n, vector<int>& dp) {
-    if (n <= 1)
-        return n;
-
-    if (dp[n] != -1)
-        return dp[n];
-
-    return dp[n] = fib_memo_helper(n - 1, dp) + fib_memo_helper(n - 2, dp);
-}
-
-int fib_memoization(int n) {
-    vector<int> dp(n + 1, -1);
-    return fib_memo_helper(n, dp);
-}
-
-/*************************************************************************************************
- 🟢 APPROACH 3: TABULATION (BOTTOM-UP DYNAMIC PROGRAMMING)
-**************************************************************************************************
-🧠 IDEA:
-• Remove recursion
-• Build answer iteratively from base cases
-
-------------------------------------
-🧪 DRY RUN (n = 4)
-------------------------------------
-dp[0] = 0
-dp[1] = 1
-
-i = 2 → dp[2] = 1
-i = 3 → dp[3] = 2
-i = 4 → dp[4] = 3
-
-------------------------------------
-⏱ TIME COMPLEXITY
-------------------------------------
-O(n)
-
-------------------------------------
-🧠 SPACE COMPLEXITY
-------------------------------------
-O(n)
-*************************************************************************************************/
-
-int fib_tabulation(int n) {
-    if (n <= 1)
-        return n;
-
-    vector<int> dp(n + 1);
-    dp[0] = 0;
-    dp[1] = 1;
-
-    for (int i = 2; i <= n; i++) {
-        dp[i] = dp[i - 1] + dp[i - 2];
+//Brute force approach[TC- O(n)+O(n)  SC- O(n)]
+vector<int> fibBrute(int n){
+    vector<int> fib(n+1);
+    fib[0]=0;
+    if(n >= 1){
+        fib[1] = 1;
     }
 
-    return dp[n];
-}
-
-/*************************************************************************************************
- 🔥 APPROACH 4: SPACE OPTIMIZED DP (BEST SOLUTION)
-**************************************************************************************************
-🧠 IDEA:
-• Only last two Fibonacci numbers are needed
-• No recursion
-• No array
-
-------------------------------------
-🧪 DRY RUN (n = 4)
-------------------------------------
-prev2 = 0
-prev1 = 1
-
-i = 2 → curr = 1 → prev2 = 1, prev1 = 1
-i = 3 → curr = 2 → prev2 = 1, prev1 = 2
-i = 4 → curr = 3 → prev2 = 2, prev1 = 3
-
-Return 3
-
-------------------------------------
-⏱ TIME COMPLEXITY
-------------------------------------
-O(n)
-
-------------------------------------
-🧠 SPACE COMPLEXITY
-------------------------------------
-O(1) ⭐
-*************************************************************************************************/
-
-int fib_optimized(int n) {
-    if (n <= 1)
-        return n;
-
-    int prev2 = 0;
-    int prev1 = 1;
-
-    for (int i = 2; i <= n; i++) {
-        int curr = prev1 + prev2;
-        prev2 = prev1;
-        prev1 = curr;
+    for(int i{2};i<=n;++i){
+        fib[i]=fib[i-1]+fib[i-2];
     }
 
-    return prev1;
+    return fib;
 }
 
-/*************************************************************************************************
- 🧪 MAIN FUNCTION
-**************************************************************************************************
-• Takes input from user
-• Runs all approaches
-• Prints results
-*************************************************************************************************/
-
-int main() {
-    int n;
-    cout << "Enter n (0 <= n <= 30): ";
-    cin >> n;
-
-    cout << "\n--- Fibonacci Results ---\n";
-    cout << "Brute Force Recursion      : " << fib_bruteforce(n) << endl;
-    cout << "Memoization (Top-Down DP)  : " << fib_memoization(n) << endl;
-    cout << "Tabulation (Bottom-Up DP)  : " << fib_tabulation(n) << endl;
-    cout << "Space Optimized DP (BEST)  : " << fib_optimized(n) << endl;
-
-    return 0;
+//Better approach[TC- O(n)  SC- O(1)]
+int fibBetter(int n){
+    if(n<=1){
+        return n;
+    }
+    int last{1};
+    int slast{};
+    int curr{};
+    for(int i{2};i<=n;++i){
+        curr=last+slast;
+        slast=last;
+        last=curr;
+    }
+    return curr;
 }
 
-/*************************************************************************************************
- 🧾 FINAL COMPARISON SUMMARY
---------------------------------------------------------------------------------------------------
-Approach                Time Complexity      Space Complexity
---------------------------------------------------------------------------------------------------
-Brute Force              O(2^n)               O(n)
-Memoization              O(n)                 O(n)
-Tabulation               O(n)                 O(n)
-Space Optimized DP       O(n)                 O(1) ⭐ BEST
+//Optimal approach[TC- O(2^n)  SC- O(n)]
+int fibrec(int n){
+    if(n<=1){
+        return n;
+    }
 
---------------------------------------------------------------------------------------------------
-🧠 INTERVIEW STRATEGY
---------------------------------------------------------------------------------------------------
-1️⃣ Write recursive solution
-2️⃣ Explain overlapping subproblems
-3️⃣ Add memoization
-4️⃣ Convert to tabulation
-5️⃣ Optimize space
+    return fibrec(n-1)+fibrec(n-2);
+}
 
-Do this → interviewer = impressed 😄🔥
-*************************************************************************************************/
+int main(){
+    int n{};
+    cout<<"Enter your no.:";
+    cin>>n;
+
+    //Optimal approach using recursion
+    cout<<"F[n]="<<fibrec(n)<<"\n";
+
+    //Better approach
+    cout<<"F[n]="<<fibBetter(n)<<"\n";
+
+    //Brute approach 
+    vector<int> fib=fibBrute(n);
+    int i{};
+    for(int x:fib){
+        cout<<"fib["<<i<<"]="<<x<<"\n";
+        ++i;
+    }
+}
+
+
+/*
+================ VECTOR =================
+❌ WRONG:
+
+vector<int> v;
+v[0] = 10;
+
+Reason:
+- Vector is empty
+- No index exists
+
+
+✅ CORRECT:
+
+vector<int> v(5);
+
+Now indices:
+0 to 4 exist
+
+
+-----------------------------------------
+
+
+❌ WRONG:
+
+vector<int> v{5};
+
+Result:
+[5]
+
+Size = 1
+
+
+✅ CORRECT:
+
+vector<int> v(5);
+
+Result:
+[0,0,0,0,0]
+
+Size = 5
+
+
+-----------------------------------------
+
+
+vector<int> a(3,7);
+
+Result:
+[7,7,7]
+
+
+vector<int> a{3,7};
+
+Result:
+[3,7]
+
+
+-----------------------------------------
+
+
+push_back() safely creates elements:
+
+vector<int> v;
+
+v.push_back(10);
+
+Result:
+[10]
+
+
+================ FIBONACCI =================
+
+❌ WRONG:
+
+vector<int> fib{};
+
+fib[0] = 0;
+fib[1] = 1;
+
+Reason:
+- Vector empty
+
+
+✅ CORRECT:
+
+vector<int> fib(n+1);
+
+fib[0] = 0;
+
+if(n >= 1){
+    fib[1] = 1;
+}
+
+
+================ ARRAYS =================
+
+int arr[100];
+
+Valid indices:
+0 to 99
+
+
+-----------------------------------------
+
+
+❌ WRONG:
+
+for(int i=0; i<=100; i++)
+
+
+✅ CORRECT:
+
+for(int i=0; i<100; i++)
+
+
+================ VLA =================
+
+int n;
+cin >> n;
+
+int arr[n];
+
+This is Variable Length Array (VLA)
+
+- Runtime-sized
+- Not standard C++
+- GCC may allow it
+
+
+-----------------------------------------
+
+
+❌ INVALID / NON-STANDARD:
+
+int n = 5;
+
+int arr[n] = {1,2,3,4,5};
+
+
+✅ BETTER:
+
+vector<int> arr(n);
+
+
+-----------------------------------------
+
+
+✅ VALID:
+
+const int n = 5;
+
+int arr[n];
+
+Reason:
+- compile-time constant
+
+
+================ STATIC ARRAY =================
+
+static int arr[5];
+
+Meaning:
+- Initialized once
+- Survives function calls
+
+
+-----------------------------------------
+
+
+Normal local array:
+
+int arr[5];
+
+- Recreated every function call
+- Destroyed after function ends
+
+
+-----------------------------------------
+
+
+static int arr[5];
+
+Automatically:
+
+{0,0,0,0,0}
+
+
+================ RETURNING ARRAYS =================
+
+❌ INVALID:
+
+int[] fun()
+
+
+-----------------------------------------
+
+
+✅ RETURN POINTER:
+
+int* fun(){
+
+    static int arr[5] = {1,2,3,4,5};
+
+    return arr;
+}
+
+
+-----------------------------------------
+
+
+❌ DANGEROUS:
+
+int* fun(){
+
+    int arr[5];
+
+    return arr;
+}
+
+Reason:
+- Local array destroyed
+- Dangling pointer
+
+
+-----------------------------------------
+
+
+✅ BEST MODERN WAY:
+
+vector<int> fun(){
+
+    vector<int> v = {1,2,3};
+
+    return v;
+}
+
+
+================ ARRAY DECAY =================
+
+void fun(int arr[])
+
+Actually becomes:
+
+void fun(int* arr)
+
+Arrays decay into pointers.
+
+*/

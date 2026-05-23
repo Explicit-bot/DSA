@@ -1,4 +1,5 @@
 /*
+***
 Given an array arr of n elements. The task is to reverse the given array. The reversal of array should be inplace.
 */
 
@@ -8,16 +9,26 @@ Given an array arr of n elements. The task is to reverse the given array. The re
 using namespace std;
 
 // Brute Force approach
-vector<int> reverseArray(int arr[], int n) {
-    vector<int> rev;
-    for (int i = n - 1; i >= 0; i--) {
+vector<int> revbrute(int arr[],int n){
+    vector<int> rev{};
+    for(int i{n-1};i>=0;--i){
         rev.push_back(arr[i]);
     }
     return rev;
 }
 
-//Better approach (Two pointer) -Optimal solution
-void ReverseArray(int arr[],int n){
+//Using Recursion
+void revrec(int arr[],int i,int n){
+    if(i>=n/2){
+        return;
+    }
+
+    swap(arr[i],arr[n-i-1]);
+    revrec(arr,i+1,n);
+}
+
+//Optimal approach (Two pointer)
+void revOptimal(int arr[],int n){
     int p1=0;
     int p2=n-1;
 
@@ -28,16 +39,8 @@ void ReverseArray(int arr[],int n){
     }
 }
 
-//Using Recursion
-void reverseRec(int arr[], int i, int n) {
-    if (i >= n/2) return;          
-
-    swap(arr[i], arr[n-i-1]);        
-    reverseRec(arr, i+1, n); 
-}
-
 //Using STL reverse
-void reverseSTL(int arr[], int n) {
+void revSTL(int arr[], int n) {
     reverse(arr, arr + n);
 }
 
@@ -61,15 +64,15 @@ int main() {
 
     
     cout << "Reversed array(Using Brute force):\n";
-    vector<int> ans = reverseArray(arr, n);
+    vector<int> ans = revbrute(arr, n);
     for (int x : ans) {
         cout << x << " ";
     }
     
     cout<<"\n";
 
-    cout << "Reversed array(Using Better approach):\n";
-    ReverseArray(arr2,n);
+    cout << "Reversed array(Using Optimal approach):\n";
+    revOptimal(arr2,n);
     for (int x : arr2) {
         cout << x << " ";
     }
@@ -77,14 +80,14 @@ int main() {
     cout<<"\n";
 
     cout << "Reversed array(Using Recursion):\n";
-    reverseRec(arr3,0,n-1);
+    revrec(arr3,0,n-1);
     for (int x : arr3) {
         cout << x << " ";
     }
     cout<<"\n";
 
     cout << "Reversed array(Using STL reverse):\n";
-    reverseSTL(arr,n);
+    revSTL(arr,n);
     for (int x : arr3) {
         cout << x << " ";
     }
@@ -94,11 +97,16 @@ int main() {
 
 
 /*
-| Approach        | Time  | Space | Recommended |
-|----------------|-------|-------|-------------|
-| Brute Force    | O(n)  | O(n)  | ❌ No       |
-| Two Pointer    | O(n)  | O(1)  | ⭐⭐⭐ YES   |
-| Recursion      | O(n)  | O(n)  | ⚠️ Only for learning |
-| STL reverse()  | O(n)  | O(1)  | ⭐⭐⭐ YES   |
+| Approach        | Time  | Space|
+|----------------|-------|-------|
+| Brute Force    | O(n)  | O(n)  |
+| Recursion      | O(n)  | O(n)  |
+| Two Pointer    | O(n)  | O(1)  |
+| STL reverse()  | O(n)  | O(1)  |
 
+
+You must not initialize as it is Variable length array"
+usually means something like this is NOT allowed:
+    int n = 5;
+    int arr[n] = {1,2,3,4,5}; // ❌
 */
