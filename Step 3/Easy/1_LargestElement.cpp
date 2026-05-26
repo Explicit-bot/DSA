@@ -1,43 +1,37 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
-//Brute force
-void largestelement(int arr[],int n){
-    sort(arr,arr+n);
-    cout<<arr[n-1]<<"\n";
+int largestbrute(vector<int>& nums){
+    sort(nums.begin(),nums.end());  //O(NlogN)
+
+    return *(nums.end()-1);
 }
 
-//Optimal approach
-void Largestelement(int arr[],int n){
-    int max=arr[0];
-    for(int i{};i<n;++i){
-        if(arr[i]>max){
-            max=arr[i];
+int largestOptimal(vector<int>& nums){
+        int lar{INT_MIN};
+        for(const int &var:nums){
+            if(var>lar){
+                lar=var;
+            }
         }
-    }
-    cout<<max<<"\n";
-} 
-
-//Using STL Algo
-void LargestElement(int arr[],int n){
-    cout<< *max_element(arr,arr+n)<<"\n";
+        return lar;
 }
 
 int main(){
     int n{};
+
+    cout<<"Number of elements:";
     cin>>n;
 
-    int arr[n];
+    vector<int> nums{};
     for(int i{};i<n;++i){
-        cin>>arr[i];
+        int temp{};
+        cin>>temp;
+        nums.push_back(temp);
     }
 
-    //cout<<"Brute: ";
-    //largestelement(arr,n);
+    cout<<largestbrute(nums);
+    cout<<largestOptimal(nums);
 
-    //cout<<"//Optimal: ";
-    //Largestelement(arr,n);
-
-    cout<<"Using STL: ";
-    LargestElement(arr,n);
 }

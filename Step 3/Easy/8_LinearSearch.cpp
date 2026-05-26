@@ -3,7 +3,7 @@
 using namespace std;
 
 //MinIndex
-int linearSearch(vector<int>& nums, int target) {
+int linearsearch(vector<int> nums,int target){
     int n=nums.size();
     for(int i{};i<n;++i){
         if(nums[i]==target){
@@ -12,19 +12,20 @@ int linearSearch(vector<int>& nums, int target) {
     }
     return -1;
 }
-
 //all indexes
 void linearSearchAll(vector<int>& nums, int target) {
     int n=nums.size();
-    bool found=false;
+    bool found{};
     for(int i{};i<n;++i){
         if(nums[i]==target){
             cout<<i<<" ";
-            if(!found) found = true;   // only once
+            if(!found){
+                found=true;
+            }
         }
     }
     if(!found){
-        cout<<-1<<"\n";
+        return;
     }
 }
 
@@ -40,8 +41,8 @@ int main(){
     int target{};
     cin>>target;
 
-    int MinINdex=linearSearch(nums,target);
-    cout<<MinINdex<<"\n";
+    
+    cout<<linearsearch(nums,target)<<"\n";
 
     linearSearchAll(nums,target);   //indexes
     cout<<"\n";

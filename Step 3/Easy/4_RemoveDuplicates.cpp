@@ -1,47 +1,69 @@
+/*
+Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
+
+Consider the number of unique elements in nums to be k​​​​​​​​​​​​​​. After removing duplicates, return the number of unique elements k.
+
+The first k elements of nums should contain the unique numbers in sorted order. The remaining elements beyond index k - 1 can be ignored.
+
+Custom Judge:
+
+The judge will test your solution with the following code:
+
+int[] nums = [...]; // Input array
+int[] expectedNums = [...]; // The expected answer with correct length
+
+int k = removeDuplicates(nums); // Calls your implementation
+
+assert k == expectedNums.length;
+for (int i = 0; i < k; i++) {
+    assert nums[i] == expectedNums[i];
+}
+If all assertions pass, then your solution will be accepted.
+
+Example 1:
+Input: nums = [1,1,2]
+Output: 2, nums = [1,2,_]
+Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+
+Example 2:
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+Explanation: Your function should return k = 5, with the first five elements of nums being 0, 1, 2, 3, and 4 respectively.
+It does not matter what you leave beyond the returned k (hence they are underscores).
+ 
+
+Constraints:
+1 <= nums.length <= 3 * 10^4
+-100 <= nums[i] <= 100
+nums is sorted in non-decreasing order.
+*/
+
 #include <iostream>
-#include <set>
-#include<vector>
+#include <unordered_set>
 using namespace std;
 
-//Brute force (O(n+nlogn))
-int removeDuplicates(vector<int >& nums){
-    set<int>  st;
-    for(auto x:nums){
-        st.insert(x);
-    }
-    int i{};
-    for(auto x:st){
-        nums[i]=x;
-        ++i;
-    }
-    return st.size();
-}
+int removeduplicatesbrute(int arr[],int n){
+    unordered_set<int> us{};
 
-//Optimal (O(n))
-int RemoveDuplicates(vector<int>& nums){
-    int i{};
-    for(int j{1};j<nums.size();++j){
-        if(nums[i]!=nums[j]){
-            nums[i+1]=nums[j];
-            ++i;
+    int idx{};
+    for(int i{};i<n;++i){
+        if(us.find(arr[i])==us.end()){
+            us.insert(arr[i]);
+            arr[idx]=arr[i];
+            ++idx;
         }
     }
-    return i+1;
+    return idx;
 }
 
-
-int main(){
-    int n;
-    cin >> n;
-
-    vector<int> nums(n);
-    for (int i = 0; i < n; i++) {
-        cin >> nums[i];
+int removeduplicatesoptimal(int arr[],int n){
+    int idx{};
+    for(int i{1};i<n;++i){
+        if(arr[idx]!=arr[i]){
+            ++idx;
+            arr[idx]=arr[i];
+        }
     }
-
-    //int k=removeDuplicates(nums);
-    int k=RemoveDuplicates(nums);
-
-    cout<<"No. of Unique Elements:"<<k<<"\n";
-    return 0;
+    return idx+1;
 }

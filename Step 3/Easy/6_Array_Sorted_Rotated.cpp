@@ -1,35 +1,51 @@
+/*
+Given an array nums, return true if the array was originally sorted in non-decreasing order, then rotated some number of positions (including zero). Otherwise, return false.
+
+There may be duplicates in the original array.
+
+Note: An array A rotated by x positions results in an array B of the same length such that B[i] == A[(i+x) % A.length] for every valid index i.
+
+Example 1:
+Input: nums = [3,4,5,1,2]
+Output: true
+Explanation: [1,2,3,4,5] is the original sorted array.
+You can rotate the array by x = 2 positions to begin on the element of value 3: [3,4,5,1,2].
+
+Example 2:
+Input: nums = [2,1,3,4]
+Output: false
+Explanation: There is no sorted array once rotated that can make nums.
+
+Example 3:
+Input: nums = [1,2,3]
+Output: true
+Explanation: [1,2,3] is the original sorted array.
+You can rotate the array by x = 0 positions (i.e. no rotation) to make nums.
+ 
+Constraints:
+1 <= nums.length <= 100
+1 <= nums[i] <= 100
+*/
 #include <iostream>
 #include <vector>
 #include <algorithm>
 using namespace std;
 
-bool IsSorted(vector<int>& nums){
-    for(int i{1};i<nums.size();++i){
-        if(nums[i]<nums[i-1]){
+
+//Brute force(O(n^2),O(n))
+bool IsSorted(vector<int> nums){
+    for(int i{};i<(nums.size()-1);++i){
+        if(nums[i]>nums[i+1]){
             return false;
         }
     }
     return true;
 }
 
-//Brute force(O(n^2),O(n))
-/*
-Loop → n
-Rotate → n
-Check sorted → n
-👉 n × (n + n) = n²
-*/
-bool check(vector<int>& nums){
-    int n=nums.size();
-    
-    if(n<2) {
-        return true;
-    }
-
-    vector<int> temp(nums.begin(),nums.end());
-    for(int k{0};k<n;++k){
-        rotate(temp.begin(),temp.begin()+1,temp.end());
-        if(IsSorted(temp)){
+bool checkBrute(vector<int> nums){
+    for(int i{};i<nums.size();++i){
+        rotate(nums.begin(),nums.begin()+1,nums.end());
+        if(IsSorted(nums)){
             return true;
         }
     }
@@ -37,65 +53,49 @@ bool check(vector<int>& nums){
 }
 
 //Using min element approach(O(n),O(1))
-bool Check(vector<int>& nums){
+bool checkBetter(vector<int>& nums){
     int n=nums.size();
-    if(n<2){
-        return true;
-    }
-    int minIndex{};
-    for(int i{};i<n;++i){
-        if(nums[i]<nums[minIndex]){
-            minIndex=i;
+    int minidx{};
+    for(int i{1};i<n;++i){
+        if(nums[minidx]>nums[i]){
+            minidx=i;
         }
     }
-    if(minIndex==0){
-        return true;
-    }
 
-    //Left check
-    for(int i{1};i<minIndex;++i){
-        if(nums[i-1]>nums[i]){
+    //left check
+    for(int i{};i<minidx-1;++i){
+        if(nums[i]>nums[i+1]){
             return false;
         }
     }
-    //Right check
-    for(int i=minIndex+1;i<n-1;++i){
+
+    //right check
+    for(int i{minidx};i<n-1;++i){
         if(nums[i]>nums[i+1]){
             return false;
         }
     }
     //Boundary check
-    if(minIndex>0 && nums[0]<nums[n-1]){
+    if(minidx!=0&&nums[0]<nums[n-1]){
         return false;
     }
 
-    return true;;
+    return true;
 }
 
 //Optimal   (O(n),O(1))
-bool CHECK(vector<int>& nums) {
-    int n=nums.size();
-
-    if (n<2){
-        return true;
-    }
-
+bool checkOptimal(vector<int> nums){
     int cnt{};
-    for(int i{};i<n-1;++i){
-        if(nums[i+1]<nums[i]){
+    for(int i{};i<(nums.size()-1);++i){
+        if(nums[i]>nums[i+1]){
             ++cnt;
-        }
+        }   
     }
-    if(nums[0]<nums[n-1]){
+    if(nums[0]<nums[nums.size()-1]){
         ++cnt;
     }
 
-    if(cnt==0||cnt==1){
-        return true;
-    }
-    else{
-        return false;
-    }
+    return cnt<=1;
 }
 
 int main(){
@@ -107,8 +107,8 @@ int main(){
         cin>>x;
     }
 
-    cout<<check(nums)<<"\n";
-    cout<<Check(nums)<<"\n";
+    cout<<checkBrute(nums)<<"\n";
+    cout<<checkBetter(nums)<<"\n";
     //cout<<CHECK(nums)<<"\n";
     
 }
