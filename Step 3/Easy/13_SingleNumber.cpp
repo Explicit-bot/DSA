@@ -1,22 +1,19 @@
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 using namespace std;
 
 //Brute     (O(n*n),O(1))
 int SingleBrute(vector <int>& nums){
-    int n=nums.size();
-    for(int i {};i<n;++i){
-        int num=nums[i];
+    for(auto x:nums){
         int cnt{};
-
-        for(int j{};j<n;++j){
-            if(nums[i]==nums[j]){
+        for(auto y:nums){
+            if(x==y){
                 ++cnt;
             }
         }
         if(cnt==1){
-            return num;
+            return x;
         }
     }
     return -1;
@@ -24,12 +21,10 @@ int SingleBrute(vector <int>& nums){
 
 //Better    {O(N log N) + O(N)= O(N log N)}
 int SingleBetter(vector<int>& nums){
-    int n=nums.size();
-    map<int,int> mp;
-    for (auto x:nums){
-        ++mp[x];    //logk
+    unordered_map<int,int> mp{};
+    for(auto x:nums){
+        ++mp[x];
     }
-
     for(auto x:mp){
         if(x.second==1){
             return x.first;
@@ -44,7 +39,12 @@ int SingleOptimal(vector<int>& nums){
     for(auto x:nums){
         xor1=xor1^x;
     }
-    return xor1;
+    if(xor1!=0){
+        return xor1;
+    }
+    else{
+        return -1;
+    }
 }
 
 int main(){

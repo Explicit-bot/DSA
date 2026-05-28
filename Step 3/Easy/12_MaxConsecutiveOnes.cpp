@@ -5,42 +5,49 @@ using namespace std;
 
 //Better (O(N),O(N))
 int findMaxConsecutiveOnesBrute(vector<int>& nums) {
-    vector<int> cnt;
-    int count{};
+    vector<int> ones{};
+    int cnt{};
     for(auto x:nums){
         if(x==1){
-            ++count;
+            ++cnt;
         }
-        else if(x!=1&&count!=0){
-            cnt.push_back(count);
-            count=0;
+        else if(x!=1 && cnt!=0){
+            ones.push_back(cnt);
+            cnt=0;
         }
     }
-    if(count!=0){
-        cnt.push_back(count);
+    if(cnt!=0){
+        ones.push_back(cnt);
     }
-    if(cnt.size()>=1){
-        return *max_element(cnt.begin(),cnt.end());
+    if(!ones.empty()){
+        return *max_element(ones.begin(),ones.end());
     }
-    return 0;
+    else{
+        return 0;
+    }
 }
 
 //Optimal   (O(N),O(1))
 int findMaxConsecutiveOnesOptimal(vector<int>& nums) {
-        int maxi{};
+        int max1{};
         int cnt{};
 
         for(auto x:nums){
             if(x==1){
                 ++cnt;
-                maxi=max(maxi,cnt);
             }
-            else{
+            else if(x!=1&&cnt!=0){
+                max1=max(max1,cnt);
                 cnt=0;
             }
         }
-
-        return maxi;
+        
+        max1=max(max1,cnt);
+        
+        if(max1==0 && cnt ==0){
+            return 0;
+        }
+        return max1;
 }
 
 int main(){

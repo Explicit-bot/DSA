@@ -1,21 +1,21 @@
+//***
 #include <iostream>
 #include <vector>
 using namespace std;
 
 //Brute (O(N*N),O(1))
 int MissingNumberBrute(vector<int>& nums,int N){
-    for(int i{};i<=N;++i){
-        int flag=0;
-        for(int j{};j<N;++j){ 
+    for(int i{};i<N+1;++i){
+        for(int j{};j<nums.size();++j){
             if(nums[j]==i){
-                flag=1;
                 break;
             }
-        }
-        if(flag==0){
-            return i;
+            else if(j==nums.size()-1){
+                return i;
+            }
         }
     }
+    return -1;
 }
 
 //Better (O(N+N),O(N))
@@ -24,7 +24,6 @@ int MissingNumberBetter(vector <int>& nums,int N){
     for(auto x:nums){
         hash[x]++;
     }
-
     for(int i{};i<N+1;++i){
         if(hash[i]==0){
             return i;
@@ -36,21 +35,14 @@ int MissingNumberBetter(vector <int>& nums,int N){
 int MissingNumberOptimalSum(vector<int>& nums , int N){
     int sum=N*(N+1)/2;
     int numsum{};
-
     for(auto x:nums){
         numsum+=x;
     }
-
     return sum-numsum;
 }
 
 //Optimal (Using XOR)   (O(N),O(1))
 int MissingNumberOptimalXOR(vector<int>& nums , int N){
-    /*
-    Two important properties of XOR are the following:
-    XOR of two same numbers is always 0 i.e. a ^ a = 0. ←Property 1.
-    XOR of a number with 0 will result in the number itself i.e. 0 ^ a = a. ←Property 2
-    */
    int xor1{},xor2{};
    for(int i{};i<=N;++i){
     xor1=xor1^i;
@@ -76,3 +68,48 @@ int main(){
     cout<<MissingNumberOptimalSum(nums,n)<<"\n";
     cout<<MissingNumberOptimalXOR(nums,n)<<"\n";
 }
+
+/*
+Two important properties of XOR are the following:
+    XOR of two same numbers is always 0 i.e. a ^ a = 0. ←Property 1.
+    XOR of a number with 0 will result in the number itself i.e. 0 ^ a = a. ←Property 2
+    a ^ b ^ a = b
+
+Step 1
+XOR all numbers from 0 to N
+xor1 = 0 ^ 1 ^ 2 ^ 3
+
+Step 2
+XOR all array elements
+xor2 = 0 ^ 1 ^ 3
+
+Step 3
+Final XOR
+xor1 ^ xor2
+
+becomes:
+(0 ^ 1 ^ 2 ^ 3) ^ (0 ^ 1 ^ 3)
+
+Rearrange:
+0 ^ 0 ^
+1 ^ 1 ^
+3 ^ 3 ^
+2
+
+Now cancel pairs:
+0 ^ 0 = 0
+1 ^ 1 = 0
+3 ^ 3 = 0
+
+Remaining:
+2
+
+Final Result
+2
+Missing number found.
+
+Why Xor is better than Summation method:	​
+Summation method can overflow for very large N.
+But XOR never overflows like that.
+That is why interviewers love XOR approach.
+*/

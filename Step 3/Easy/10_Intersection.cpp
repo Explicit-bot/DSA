@@ -4,70 +4,68 @@
 #include <set>
 using namespace std;
 
-//Brute (Map)   (O((n1 + n2) log n1), O(n1))
-vector<int> IntersectMap(vector<int>& nums1, vector<int>& nums2){
+//Map
+vector <int> InterMap(vector<int> nums1,vector<int> nums2){
+    int n1{nums1.size()};
+    int n1{nums2.size()};
+    vector<int> temp{};
     map<int,int> mp;
-    vector<int> inter;
-
-    // store frequency of nums1
-    for(auto x : nums1){
+    for(auto x:nums1){
         mp[x]++;
     }
-
-    // check nums2
-    for(auto x : nums2){
-        if(mp[x] > 0){
-            inter.push_back(x);
-            mp[x] = 0;   // avoid duplicates in result
+    for(auto x:nums2){
+        mp[x]++;
+    }
+    for(auto x:mp){
+        if(x.second>2){
+            temp.push_back(x.first);
         }
     }
-
-    return inter;
+    return temp;
 }
 
+//Set
+vector<int> InterSet(vector<int> nums1,vector<int> nums2){
+    vector<int> temp{};
+    set<int> st{};
 
-//Brute (Set)   (O((n1 + n2) log n1), O(n1))
-vector<int> IntersectSet(vector<int>& nums1, vector<int>& nums2){
-    set<int> st;
-    vector<int> inter;
-
-    for(auto x : nums1){
+    for(auto x:nums1){
         st.insert(x);
     }
-
-    for(auto x : nums2){
-        if(st.find(x) != st.end()){
-            inter.push_back(x);
-            st.erase(x);   // avoid duplicates
+    for(auto x:nums2){
+        if(st.find(x)!=st.end()){
+            temp.push_back(x);
+            st.erase(x);
         }
     }
-
-    return inter;
+    return temp;
 }
 
+//Two pointer
+vector<int> InterOpt(vector<int> nums1,vector<int> nums2){
+    int n1{nums1.size()};
+    int n2{nums2.size()};
+    int i{};
+    int j{};
+    vector<int> temp{};
 
-//Optimal (Two Pointer)   (O(n1 + n2), O(n1 + n2))
-vector<int> IntersectOptimal(vector<int>& nums1, vector<int>& nums2){
-    int i = 0, j = 0;
-    vector<int> inter;
-
-    while(i < nums1.size() && j < nums2.size()){
-        if(nums1[i] == nums2[j]){
-            if(inter.empty() || inter.back() != nums1[i])
-                inter.push_back(nums1[i]);
-            i++; j++;
+    while(i<n1 && j<n2){
+        if(nums1[i]==nums2[j]){
+            if(temp.empty()||temp.back()!=nums1[i]){
+                temp.push_back(nums1[i]);
+            }
+            ++i;
+            ++j;
         }
-        else if(nums1[i] < nums2[j]){
-            i++;
+        else if(nums1[i]<nums2[j]){
+            ++i;
         }
         else{
-            j++;
+            ++j;
         }
     }
-
-    return inter;
+    return temp;
 }
-
 
 int main(){
     int n1{},n2{};
@@ -83,9 +81,9 @@ int main(){
         cin >> x;
     }
 
-    vector<int> inter = IntersectMap(nums1, nums2);
-    // vector<int> inter = IntersectSet(nums1, nums2);
-    // vector<int> inter = IntersectOptimal(nums1, nums2);
+    vector<int> inter = InterMap(nums1, nums2);
+    // vector<int> inter = InterSet(nums1, nums2);
+    // vector<int> inter = InterOpt(nums1, nums2);
 
     for(auto x:inter){
         cout<<x<<" ";

@@ -4,84 +4,84 @@
 #include <set>
 using namespace std;
 
-//Brute(Maps)   (O((n1 + n2) log(n1 + n2)),O(n1 + n2))
-vector<int> UniMap(vector<int>& nums1,vector<int>& nums2){
-    int n1=nums1.size();
-    int n2=nums2.size();
-
+//Maps 
+vector<int> UniMap(vector<int>& nums,vector<int>& nums1){
+    vector<int> temp{};
     map<int,int> mp;
-    vector<int> uni;
-
-    for(int i{};i<n1;++i){
-        mp[nums1[i]]++;
+    for(auto x:nums){
+        mp[x]++;    //O(log(n)) for an element
     }
-    for(int i{};i<n2;++i){
-        mp[nums2[i]]++;
+    for(auto x:nums1){
+        mp[x]++;    //O(log(m)) for an element
     }
-
     for(auto x:mp){
-        uni.push_back(x.first);
+        temp.push_back(x.first);
     }
-    return uni;
+
+    return temp;
 }
 
-//Brute(Sets)
-vector<int> UniSet(vector<int>& nums1,vector<int>& nums2){
-    int n1=nums1.size();
-    int n2=nums2.size();
-
+//Sets
+vector<int> UniSet(vector<int>& nums,vector<int>& nums1){
     set<int> st;
-    vector<int> uni;
-
-    for(auto x:nums1){
-        st.insert(x);
+    vector<int> temp{};
+    for(auto x:nums){
+        st.insert(x);   //O(logn)
     }
-     for(auto x:nums2){
-        st.insert(x);
+    for(auto x:nums1){
+        st.insert(x);   //O(logm)
     }
 
     for(auto x:st){
-        uni.push_back(x);
+        temp.push_back(x);
     }
-    return uni;
+
+    return temp;
 }
 
-//Optimal(Two pointer) (O(n1+n2),O(n1+n2))
-vector<int> UnionOptimal(vector<int>& nums1, vector<int>& nums2) {
-    int i = 0, j = 0;
-    vector<int> uni;
+//Optimal(Two pointer)
+vector<int> UniOpt(vector<int>& nums,vector<int>& nums1){
+    int n{nums.size()};
+    int n1{nums1.size()};
+    vector<int> temp{};
+    int i{};
+    int j{};
 
-    while(i < nums1.size() && j < nums2.size()){
-        if(nums1[i] == nums2[j]){
-            if(uni.empty() || uni.back() != nums1[i])
-                uni.push_back(nums1[i]);
-            i++; j++;
+    while(i<n && j<n1){
+        if(nums[i]<nums1[j]){
+            if(temp.empty()||temp.back()!=nums[i]){
+                temp.push_back(nums[i]);
+            }
+            ++i;
         }
-        else if(nums1[i] < nums2[j]){
-            if(uni.empty() || uni.back() != nums1[i])
-                uni.push_back(nums1[i]);
-            i++;
+        else if(nums1[j]<nums[i]){
+            if(temp.empty()||temp.back()!=nums1[j]){
+                temp.push_back(nums[j]);
+            }
+            ++j;
         }
         else{
-            if(uni.empty() || uni.back() != nums2[j])
-                uni.push_back(nums2[j]);
-            j++;
+            if(temp.empty()||temp.back()!=nums[i]){
+                temp.push_back(nums[i]);
+            }
+            ++i;
+            ++j;
         }
     }
-
-    while(i < nums1.size()){
-        if(uni.empty() || uni.back() != nums1[i])
-            uni.push_back(nums1[i]);
-        i++;
+    
+    while(i<n){
+        if(temp.empty()||temp.back()!=nums[i]){
+                temp.push_back(nums[i]);
+        }
+        ++i;
     }
-
-    while(j < nums2.size()){
-        if(uni.empty() || uni.back() != nums2[j])
-            uni.push_back(nums2[j]);
-        j++;
+    while(j<n1){
+        if(temp.empty()||temp.back()!=nums[j]){
+                temp.push_back(nums[j]);
+        }
+        ++j;
     }
-
-    return uni;
+    return temp;
 }
 
 int main(){
@@ -100,7 +100,7 @@ int main(){
 
     vector<int> uni=UniMap(nums1,nums2);
     //vector<int> uni=UniSet(nums1,nums2);
-    //vector<int> uni=UniOptimal(nums1,nums2);
+    //vector<int> uni=UniOpt(nums1,nums2);
     for(auto x:uni){
         cout<<x<<" ";
     }
