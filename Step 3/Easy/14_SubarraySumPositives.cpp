@@ -63,7 +63,7 @@ int SubArrayBetter(vector<int> nums,int k){
     return maxlen;
 }
 
-//Optimal(only for zero and positives) ****
+//Optimal sliding window-(only for zero and positives) ****
 int SubArrayOptimal(vector<int> nums,int k){
     int left{};
     int right{};
