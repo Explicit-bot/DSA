@@ -129,6 +129,7 @@ Giving/changing value later.
 
 Example:
     x = 50;
+    x = {50};   //Prevents narrowing conversion.
 
 --------------------------------------------------------------------------------
 Important Distinction
@@ -264,7 +265,7 @@ All Main Initialization Types
     int a = 10;   // Copy initialization
     int b(10);    // Direct initialization
     int c{10};    // Brace initialization
-    int d = {10}; // Brace copy initialization
+    int d = {10}; // Brace copy initialization     
     int e;        // Default initialization
     int f{};      // Value initialization
 
