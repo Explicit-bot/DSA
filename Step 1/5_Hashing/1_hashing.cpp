@@ -1,31 +1,5 @@
 /*
-#######################################################################
-########################## HASHING COMPLETE NOTES #####################
-#######################################################################
-
-Topics Covered:
-1. Introduction to Hashing
-2. Hash Functions
-3. Hash Tables
-4. Buckets
-5. Collisions
-6. Collision Resolution
-7. Chaining
-8. Open Addressing
-9. Load Factor
-10. Rehashing
-11. unordered_map Internals
-12. Custom Hash Functions
-13. splitmix64
-14. Complexity Analysis
-15. Real-world Usage
-16. String Compression / Coordinate Compression
-
-#######################################################################
-
-
-
-
+########################## HASHING ####################################
 =======================================================================
 1. WHY HASHING EXISTS
 =======================================================================

@@ -171,6 +171,9 @@ a ^ b   =   ← 1s where a and b differ
 ~a      =   ← flipped all bits of a (two’s complement form) [~a = -(a + 1)]
 a << n  =   ← left shift (multiply by 2^n)
 b >> n  =   ← right shift (divide by 2^n)
+XOR of two same numbers is always 0 i.e. a ^ a = 0. ←Property 1.
+XOR of a number with 0 will result in the number itself i.e. 0 ^ a = a. ←Property 2
+a ^ b ^ a = b
 
         ====================================================
                             typedef

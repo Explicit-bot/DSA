@@ -3,7 +3,7 @@
 #include<map>
 using namespace std;
 
-vector<int> RearrBySumBrute(vector<int>& nums){
+vector<int> RearrBySignBrute(vector<int>& nums){
     int n=nums.size();
     vector<int> pos{};
     vector<int> neg{};
@@ -23,7 +23,7 @@ vector<int> RearrBySumBrute(vector<int>& nums){
     return total;
 }
 
-vector<int> RearrBySumOptimal(vector<int>& nums){
+vector<int> RearrBySignOptimal(vector<int>& nums){
     int n=nums.size();
     vector<int> total(n,0);
     int pidx{};
