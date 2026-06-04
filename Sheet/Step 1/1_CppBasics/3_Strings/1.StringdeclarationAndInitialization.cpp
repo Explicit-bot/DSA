@@ -16,14 +16,13 @@ Size is automatically set to 6 ('H', 'e', 'l', 'l', 'o', '\0').
 Null character is added automatically.
 
 2. Explicit size with string literal
+    char str[10] = "Hello";
 
-    char str[10] = "Hello";  
 Extra space is unused.
 It's size is 6 as H,e,l,l,o,\0.
 Useful when you expect to modify or expand the string later.
 
 3. Character-by-character initialization
-
     char alp[] = {65,66,67,68,"\0"};  //Output: ABCD
     char str[] = {'H', 'e', 'l', 'l', 'o', '\0'};  
 You must manually add the null terminator '\0'.
