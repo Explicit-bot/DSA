@@ -127,4 +127,11 @@ Because:
 	•	std::cout prints only the digits it needs to represent the number.
 	•	Even though the values are floats internally, std::cout prints them like 9 or 8 if there’s no decimal part.
 	•	This is purely a formatting thing, not a type issue.
+
+| Loop Type       | Copy? | Can Modify Original? | Fast?            |
+| --------------- | ----- | -------------------- | ---------------- |
+|  auto x         | YES   | NO                   | Sometimes slow   |
+|  auto& x        | NO    | YES                  | Fast             |
+|  const auto& x  | NO    | NO                   | Fastest + safest |
 */
+

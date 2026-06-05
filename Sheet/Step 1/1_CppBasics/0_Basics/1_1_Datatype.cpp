@@ -96,10 +96,12 @@ A
 65
 
 C. Floating Point Datatypes
-Used for decimal numbers.
+Used for decimal numbers and exponentials.
 
 E.g:
 float price = 10.5;
+double distance = 45E12    // 45E12 is equal to 45*10^12
+double distance = 45E-12    // 45E12 is equal to 45*10^-12
 
 Type	Precision
 float	Single precision
@@ -122,6 +124,9 @@ Example:
 May store:
 3.14159
 But double stores much more accurately.
+
+Note:-
+We must add the suffix f or F at the end of a float value. This is because the compiler interprets decimal values without the suffix as double.
 
 D. Boolean Datatype (bool)- usually 1 byte
 Stores:
@@ -208,5 +213,4 @@ int main() {
     return 0;
 }
 */
-
 

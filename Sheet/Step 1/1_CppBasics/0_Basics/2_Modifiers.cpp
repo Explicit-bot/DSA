@@ -69,6 +69,10 @@ Floating Types-
     double
     long double
 
+long double values should end with L. For example,
+    // declaring a long double variable
+    long double num_ldb = 2.569L;
+
 Important:-
 •Integer Literal 10 is automatically: int
 

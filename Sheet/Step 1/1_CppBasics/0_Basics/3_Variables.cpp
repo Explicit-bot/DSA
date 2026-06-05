@@ -463,12 +463,17 @@ Example:
     int age = 20;
     age = 25;
 
-Constant:
-----------
-Cannot change value.
+C++ Constants
+--------------
+In C++, we can create variables whose value cannot be changed. For that, we use the const keyword.
 
 Example:
-    const int age = 20;
+    const int LIGHT_SPEED = 299792458;
+    LIGHT_SPEED = 2500  // Error! LIGHT_SPEED is a constant.
+
+Here, we have used the keyword const to declare a constant named LIGHT_SPEED. If we try to change the value of LIGHT_SPEED, we will get an error.
+
+A constant can also be created using the #define preprocessor directive.
 
 ================================================================================
                         AUTO TYPE DEDUCTION

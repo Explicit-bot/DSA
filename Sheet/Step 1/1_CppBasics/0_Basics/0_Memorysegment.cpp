@@ -3,6 +3,10 @@ If anyone reads these notes in the future, you might wonder why some very simple
 
 For me, this is both an advantage and a disadvantage. It helps me study topics in great depth and build a stronger understanding, but at the same time, it can slow me down and sometimes make things more confusing than they need to be.  
 
+Shortcut to use comments:
+Single Line comment: cmd + /
+Multi line comment: cmd + shift + /
+
 🧠 Memory Segments in C++
 C++ program memory is typically divided into 5 segments:
 Segment                     Stores                              Example
