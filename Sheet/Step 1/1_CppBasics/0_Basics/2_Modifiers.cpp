@@ -59,11 +59,7 @@ Character Types-char does NOT automatically mean signed or unsigned in standard 
     char
     signed char
     unsigned char
-    wchar_t -------
-    char16_t      |---------- Will study when required
-    char32_t      |
-    char8_t -------
-
+    
 Floating Types-
     float
     double

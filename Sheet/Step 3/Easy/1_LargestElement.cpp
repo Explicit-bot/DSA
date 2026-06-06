@@ -31,7 +31,8 @@ int main(){
         nums.push_back(temp);
     }
 
-    cout<<largestbrute(nums);
-    cout<<largestOptimal(nums);
+    cout<<largestbrute(nums)<<"\n";
+    cout<<largestOptimal(nums)<<"\n";
+
 
 }

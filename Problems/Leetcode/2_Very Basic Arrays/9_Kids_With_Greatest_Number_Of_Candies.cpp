@@ -11,7 +11,7 @@ vector<bool> GreatestNumofCandies(vector<int>& nums,int extracandies){
         }
     }
     
-    vector<bool> ans(n);
+    vector<bool> ans;
     for(auto x : nums){
         ans.push_back(x+extracandies>=maxi);
     }
@@ -34,5 +34,4 @@ int main(){
     for(auto x:ans){
         cout<<x<<" ";
     }
-
 }

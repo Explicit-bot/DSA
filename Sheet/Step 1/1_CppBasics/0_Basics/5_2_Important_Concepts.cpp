@@ -1,7 +1,7 @@
 /*
-                ====================================================
-                                    Divison rule
-                ====================================================
+            ====================================================
+                            Divison rule
+            ====================================================
 •Integer Division Rule
 Expression	            Result
 int / int	            int
@@ -174,67 +174,4 @@ b >> n  =   ← right shift (divide by 2^n)
 XOR of two same numbers is always 0 i.e. a ^ a = 0. ←Property 1.
 XOR of a number with 0 will result in the number itself i.e. 0 ^ a = a. ←Property 2
 a ^ b ^ a = b
-
-        ====================================================
-                            typedef
-        ====================================================
-• To give meaning full names to the variables typedef is used
-• It is also used to define user define data type
-• It is used for better readability of a program
-Ex :
-    #include <iostream>
-
-    typedef int marks ;
-    typedef int rollno ;
-
-    int main( ) {
-        marks m1, m2, m3;
-        rollno r1 ,r2, r3;
-
-    }
-
-        ====================================================
-                          Enumerated
-        ====================================================
-Enum is a way to give meaningful names to a fixed set of related numbers so humans can understand the code.
-enum GameState {
-    MENU,
-    PLAYING,
-    PAUSED,
-    GAME_OVER
-};
-Would you want to read this?
-    if (state == 3) {
-    ???  
-    }
-Or this?
-    if (state == GAME_OVER) {
-        rip  
-    }
-This is where enum helps.
-
-🧠 What actually happens
-Compiler stores enums as integers
-Ex :
-enum days { mon , tue , wed , thu , fri , sat , sun };
-            0     1     2      3      4     5     6
-    
-Internally:
-mon → 0
-tue → 1
-wed → 2
-thu → 3
-fri → 4
-sat → 5
-sun → 6
-
-Day d = wed;   // computer sees: int d = 2;
-➡️ No extra memory, no extra time, zero overhead
-
-•Here you can access the values that are assigned to it already
-you cannot define your own values here.
-•By default the index value assigned is 0 but you can change it if you
-  want  e.g.
-    enum dept { CS=2, IT , EEE=9, CIVIL };
-                 2    3     9       10
 */

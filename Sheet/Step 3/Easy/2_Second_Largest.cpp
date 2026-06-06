@@ -34,32 +34,6 @@ int slargestBrute(vector<int> nums){        //we can pass by reference here if o
     return -1;
 }
 
-int slargestbetter(vector<int> nums){
-    if(nums.size()<2){
-        return -1;
-    }
-    int largest{INT_MIN};
-    int slargest{INT_MIN};
-    for(int i{};i<nums.size();++i){     //O(N)
-        if(nums[i]>largest){
-            largest=nums[i];
-        }
-    }
-
-    for(int i{};i<nums.size();++i){     //O(N)
-        if(nums[i]<largest&&nums[i]>slargest){
-            slargest=nums[i];
-        }
-    }
-
-    if(slargest==INT_MIN){
-        return -1;
-    }
-    else{
-        return slargest;
-    }
-}
-
 pair<bool,int> slargestoptimal(vector<int> nums){
     if(nums.size()<2){
         return {false,-1};
@@ -80,6 +54,7 @@ pair<bool,int> slargestoptimal(vector<int> nums){
             found=true;
         }
     }
+
     if(found==false){      //Think why
         return {false,-1};
     }
@@ -102,6 +77,5 @@ int main(){
     }
 
     cout<<"The second largest no. is(using brute):"<<slargestBrute(nums)<<"\n";
-    cout<<"The second largest no. is(using better):"<<slargestbetter(nums)<<"\n";
     cout<<"The second largest no. is(using optimal):"<<slargestoptimal(nums).first<<","<<slargestoptimal(nums).second<<"\n";
 }
