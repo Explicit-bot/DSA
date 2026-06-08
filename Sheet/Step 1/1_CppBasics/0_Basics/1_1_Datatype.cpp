@@ -31,8 +31,8 @@ Datatypes in C++
     ├── struct
     ├── class
     ├── union
-    ├── enum    (explained in 5_Important_Concepts.cpp)
-    └── typedef (explained in 5_Important_Concepts.cpp)
+    ├── enum    
+    └── typedef 
 
 =========================================================================================
 

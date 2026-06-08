@@ -59,8 +59,6 @@ Average Complexity:
 O(1)
 
 
-
-
 =======================================================================
 3. HASH FUNCTION
 =======================================================================
@@ -87,8 +85,6 @@ Properties of a GOOD hash function:
 IMPORTANT:
 Same input must ALWAYS generate same hash
 during execution.
-
-
 
 
 =======================================================================
@@ -145,9 +141,6 @@ bucket[2]
 etc.
 
 Buckets store actual elements.
-
-
-
 
 =======================================================================
 6. HOW BUCKET IS CHOSEN
@@ -251,12 +244,9 @@ This is related to:
 # PIGEONHOLE PRINCIPLE
 
 
-
-
 =======================================================================
 10. GOALS OF GOOD HASHING
 =======================================================================
-
 A good hash table tries to:
 
 1. Minimize collisions

@@ -1,3 +1,4 @@
+//Size of first array is m+n with m useful elements rest zero
 #include<iostream>
 #include<vector>
 using namespace std;

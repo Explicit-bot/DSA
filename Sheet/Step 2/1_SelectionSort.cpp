@@ -1,12 +1,19 @@
+//Find the smallest element and place it at its correct position
+// • Is it STABLE??
+// • Is it in-place??
+// • Is it adaptive??
+
+
 #include<iostream>
 #include<vector>
 using namespace std;
 
-//Iterative Selection sort
-void selectionSort(vector<int>& nums) {
-    for (int i{};i<nums.size()-1;++i){  //last element is already sorted in the end so n-1
+
+void selectionSortIterative(vector<int>& nums){
+    int n=nums.size();
+    for(int i{};i<n-1;++i){
         int min=i;
-        for(int j{i+1};j<nums.size();++j){
+        for(int j{i+1};j<n;++j){
             if(nums[j]<nums[min]){
                 min=j;
             }
@@ -15,20 +22,19 @@ void selectionSort(vector<int>& nums) {
     }
 }
 
-//Recursive Selection Sort
-void SelectionSort(vector<int>& nums,int i){
-    if(i==nums.size()-1){
+void selectionSortRecursive(vector<int>& nums,int i=0){
+    int n=nums.size();
+    if(i==n-1){
         return;
     }
     int min=i;
-    for(int j=i+1;j<nums.size();++j){
+    for(int j{i+1};j<n;++j){
         if(nums[j]<nums[min]){
             min=j;
         }
     }
     swap(nums[i],nums[min]);
-
-    SelectionSort(nums,i+1);
+    selectionSortRecursive(nums,i+1);
 }
 
 int main(){
@@ -48,10 +54,8 @@ int main(){
     }
     cout << "\n";
 
-    // Uncomment ONE at a time to test
-
-    // selectionSort(nums);        // Iterative
-    SelectionSort(nums, 0);        // Recursive
+    // selectionSortIterative(nums);        // Iterative
+    selectionSortRecursive(nums,0);        // Recursive
 
     cout << "Sorted array:\n";
     for (int x : nums) {
@@ -66,5 +70,4 @@ int main(){
 /*
 Time   → O(n²)
 Space  → O(1) iterative | O(n) recursive (stack)
-Stable → ❌ No
 */
