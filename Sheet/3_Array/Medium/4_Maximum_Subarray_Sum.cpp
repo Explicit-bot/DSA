@@ -31,7 +31,14 @@ int MaxSubArrSumBetter(vector<int>& nums){
     return maxi;
 }
 
-//Kadane's Algorithm
+/*
+Kadane's Algorithm:
+At every index, you decide Should I continue the current subarray?
+OR
+Should I start a new subarray from this element?
+If the current running sum becomes negative, it is useless to carry it forward because it will only decrease future sums.
+So we reset it.
+*/
 int MaxSubArrSumOptimal(vector<int>& nums){
     int maxi{INT_MIN};
     int sum{};
