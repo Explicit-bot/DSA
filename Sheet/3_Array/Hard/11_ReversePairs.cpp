@@ -55,7 +55,7 @@ void merge(vector<int>& nums,int l,int mid ,int h){
         ++right;
     }
 
-    for(int i = l; i <= h; ++i){
+    for(int i {l}; i <= h; ++i){
         nums[i] = ans[i - l];
     }
 

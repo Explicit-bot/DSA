@@ -1,12 +1,6 @@
 /*
-========================================================
-                C++ TYPE CONVERSION NOTES
-========================================================
-
---------------------------------------------------------
 1. WHAT IS TYPE CONVERSION?
 --------------------------------------------------------
-
 Type Conversion means converting data from one data type
 to another.
 
@@ -16,16 +10,12 @@ Examples:
     char -> int
 
 C++ supports two types of conversions:
-
 1. Implicit Conversion (Automatic Conversion)
 2. Explicit Conversion (Type Casting)
 
 ========================================================
 2. IMPLICIT TYPE CONVERSION
 ========================================================
-
-Definition:
-------------
 Conversion automatically performed by the compiler.
 
 Also called:
@@ -38,40 +28,19 @@ Syntax:
 No special syntax needed.
 
 Example:
---------
-
-#include <iostream>
-using namespace std;
-
-int main() {
-
     int num_int = 9;
-
     double num_double;
-
     num_double = num_int;
-
     cout << num_double;
-}
 
-Output:
--------
-9
-
-Explanation:
-------------
-Compiler automatically converts:
-
+Output: 9
+Compiler automatically converts
     9 -> 9.0
-
 before storing into double.
 
 ========================================================
 3. WIDENING CONVERSION
 ========================================================
-
-Definition:
-------------
 Converting smaller type to larger type safely.
 
 Examples:
@@ -81,25 +50,12 @@ Examples:
     float -> double
     int -> long long
 
-Usually Safe:
---------------
-YES
-
-Reason:
--------
-Larger type can store all values of smaller type.
-
+• Usually Safe as larger type can store all values of smaller type.
 Example:
---------
+    int x = 5;
+    double y = x;
 
-int x = 5;
-double y = x;
-
-Internally:
-------------
-5 becomes 5.0
-
-No data loss occurs.
+Internally: 5 becomes 5.0 (No data loss occurs)
 
 ========================================================
 4. IMPLICIT CONVERSION: double -> int
@@ -160,7 +116,6 @@ May cause:
 ========================================================
 6. TRUNCATION
 ========================================================
-
 Definition:
 ------------
 Removing fractional part during floating-point to integer
@@ -254,7 +209,6 @@ be difficult.
 
 Example:
 --------
-
 int a = 5;
 double b = 2.5;
 
