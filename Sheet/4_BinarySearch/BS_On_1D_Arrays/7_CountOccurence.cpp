@@ -64,4 +64,8 @@ int main(){
     vector<int> ans=FirstAndLast(nums,k);
     cout<<"First Occurence at idx:"<<ans[0]<<"\n";
     cout<<"Last Occurence at idx:"<<ans[1]<<"\n";
+
+    if(ans[0]!=-1){
+        cout<<"No. of occurences:"<<ans[1]-ans[0]+1;
+    }
 }

@@ -7,7 +7,6 @@ int UpperBoundBrute(vector<int>& nums,int k){
     for(int i{};i<nums.size();++i){
         if(nums[i]>k){
             return i;
-            break;
         }
     }
     return nums.size();

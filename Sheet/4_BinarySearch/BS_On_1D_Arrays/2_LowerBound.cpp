@@ -1,3 +1,9 @@
+/*
+| Function    | Meaning              |
+| ----------- | -------------------- |
+| Lower Bound | First element  >= k  |
+| Upper Bound | First element  > k   |
+*/
 #include<iostream>
 #include<vector>
 using namespace std;
@@ -6,7 +12,7 @@ int LowerBoundBrute(vector<int>& nums,int k){
     for(int i{};i<nums.size();++i){
         if(nums[i]>=k){
             return i;
-            break;
+            break;      //LOL,HAHAHAHAHHAHAHAHAHAHAHAH,GAWAARRR
         }
     }
     return nums.size();

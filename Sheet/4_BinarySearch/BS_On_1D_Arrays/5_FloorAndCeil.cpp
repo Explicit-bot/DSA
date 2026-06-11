@@ -2,16 +2,34 @@
 #include<vector>
 using namespace std;
 
-int GetFirst(vector<int>& nums,int k){
+int getFloor(vector<int>& nums,int k){
     int n=nums.size();
     int l{0};
     int h{n-1};
-    int ans{n};
+    int ans{-1};
+    while(l<=h){
+        int mid=l+(h-l)/2;
+        if(nums[mid]<=k){
+            l=mid+1;
+            ans=nums[mid];
+        }
+        else{
+            l=mid+1;
+        }
+    }
+    return ans;
+}
+
+int getCeil(vector<int>& nums,int k){
+    int n=nums.size();
+    int l{0};
+    int h{n-1};
+    int ans{-1};
     while(l<=h){
         int mid=l+(h-l)/2;
         if(nums[mid]>=k){
             h=mid-1;
-            ans=mid;
+            ans=nums[mid];
         }
         else{
             l=mid+1;
@@ -20,33 +38,8 @@ int GetFirst(vector<int>& nums,int k){
     return ans;
 }
 
-int GetLast(vector<int>& nums,int k){
-    int n=nums.size();
-    int l{0};
-    int h{n-1};
-    int ans{n};
-    while(l<=h){
-        int mid=l+(h-l)/2;
-        if(nums[mid]>k){
-            h=mid-1;
-            ans=mid;
-        }
-        else{
-            l=mid+1;
-        }
-    }
-    return ans;
-}
-
-vector<int> FirstAndLast(vector<int>& nums,int k){
-    int first=GetFirst(nums,k);
-    
-    if(first==-1 || nums[first]!=k){
-        return {-1,-1};
-    }
-
-    int last=GetLast(nums,k)-1;
-    return {first,last};
+vector<int> floorAndCeil(vector<int>& nums,int k){
+    return {getFloor(nums,k),getCeil(nums,k)};
 }
 
 int main(){
@@ -61,7 +54,9 @@ int main(){
     int k{};
     cin>>k;
 
-    vector<int> ans=FirstAndLast(nums,k);
-    cout<<"First Occurence at idx:"<<ans[0]<<"\n";
-    cout<<"Last Occurence at idx:"<<ans[1]<<"\n";
+    vector<int> ans=floorAndCeil(nums,k);
+    cout<<"Floor:"<<ans[0]<<"\n";
+    cout<<"Ceil:"<<ans[1]<<"\n";
+    
 }
+
