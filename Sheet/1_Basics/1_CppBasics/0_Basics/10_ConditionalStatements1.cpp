@@ -42,6 +42,7 @@ e.g.
 • Remaining conditions are skipped.     
 • Only ONE block executes
 • else is optional but recommended
+• There can be more than one else if statement but only one if and else statements.
 
 Syntax:
 if (condition1) {

@@ -466,7 +466,7 @@ Example:
 C++ Constants
 --------------
 In C++, we can create variables whose value cannot be changed. For that, we use the const keyword.
-
+A const variable must be initialized during declaration and cannot be changed later.
 Example:
     const int LIGHT_SPEED = 299792458;
     LIGHT_SPEED = 2500  // Error! LIGHT_SPEED is a constant.
