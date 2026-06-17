@@ -1,28 +1,5 @@
 /*
 =========================================================================================
-                                POWER / EXPONENTIATION
-=========================================================================================
-
-This file contains COMPLETE notes about:
-
-1. What is exponentiation
-2. pow() function in C++
-3. Problems with pow()
-4. Safe uses of pow()
-5. Powers of 2 using left shift
-6. Naive exponentiation
-7. Recursive Binary Exponentiation
-8. Iterative Binary Exponentiation
-9. Bitwise understanding
-10. Why Binary Exponentiation works
-11. Modular Exponentiation
-12. Mathematical properties of modulo
-13. Time complexities
-14. Overflow issues
-15. Competitive Programming usage
-16. Important observations and tricks
-
-=========================================================================================
                                 1. WHAT IS EXPONENTIATION?
 =========================================================================================
 
@@ -253,7 +230,6 @@ Only works for powers of 2.
 =========================================================================================
                         6. NAIVE EXPONENTIATION
 =========================================================================================
-
 Basic approach:
 multiply 'a' exactly 'b' times.
 
@@ -262,7 +238,6 @@ Complexity:
 
 Code:
 */
-
 long long naivePower(long long a, long long b) {
 
     long long ans = 1;
@@ -276,11 +251,9 @@ long long naivePower(long long a, long long b) {
 
 /*
 Example:
-
     naivePower(2,5)
 
 Process:
-
     1 * 2 = 2
     2 * 2 = 4
     4 * 2 = 8
@@ -292,7 +265,6 @@ Problem:
 Very slow for huge powers.
 
 Example:
-
     2^1000000000
 
 Impossible practically.
@@ -300,39 +272,29 @@ Impossible practically.
 =========================================================================================
                 7. MATHEMATICS BEHIND BINARY EXPONENTIATION
 =========================================================================================
-
 KEY OBSERVATION:
-
 If exponent is EVEN:
-
         a^b = (a^(b/2))^2
 
 Example:
-
         2^8 = (2^4)^2
 
 If exponent is ODD:
-
         a^b = a * a^(b-1)
 
 Example:
-
         2^5 = 2 * 2^4
 
 This reduces exponent quickly.
 
 Instead of:
     subtracting 1 every time
-
 we:
     divide exponent by 2
 
 This reduces complexity from:
-
     O(n)
-
 to:
-
     O(log n)
 
 =========================================================================================
@@ -349,15 +311,12 @@ long long recursivePower(long long a, long long b) {
 
     // even exponent
     if(b % 2 == 0) {
-
         long long half = recursivePower(a,b/2);
-
         return half * half;
     }
 
     // odd exponent
     else {
-
         return a * recursivePower(a,b-1);
     }
 }
@@ -527,17 +486,13 @@ This perfectly matches binary decomposition.
 
 IMPORTANT OPERATORS:
 -----------------------------------------
-
 1. b & 1
-
 Checks:
     Is last bit set?
-
 Meaning:
     Is number odd?
 
 Examples:
-
     5 = 101
     5 & 1 = 1
 
@@ -545,88 +500,55 @@ Examples:
     6 & 1 = 0
 
 2. b >>= 1
-
 Right shift by 1.
-
 Equivalent to:
-
     b = b / 2
-
 for integers.
 
 Example:
-
     13 = 1101
     13 >> 1 = 0110 = 6
-
 =========================================================================================
                     12. MODULAR ARITHMETIC
 =========================================================================================
-
 Expression:
-
         a % m
-
 means:
     remainder when a is divided by m.
-
 Example:
-
         17 % 5 = 2
-
 because:
-
         17 = 5*3 + 2
 
 =========================================================================================
             13. IMPORTANT MODULO PROPERTIES
 =========================================================================================
-
 VERY IMPORTANT:
-
 1. Addition Property
-
-        (a + b) % m
-        =
-        ((a % m) + (b % m)) % m
+        (a + b) % m=((a % m) + (b % m)) % m
 
 2. Subtraction Property
-
-        (a - b) % m
-        =
-        ((a % m) - (b % m) + m) % m
+        (a - b) % m = ((a % m) - (b % m) + m) % m
 
 3. Multiplication Property
-
-        (a * b) % m
-        =
-        ((a % m) * (b % m)) % m
-
+        (a * b) % m =((a % m) * (b % m)) % m
 This property makes modular exponentiation possible.
 
 IMPORTANT:
 -----------------------------------------
-
 Division DOES NOT work normally.
 
 WRONG:
-
         (a / b) % m
-
 NOT equal to:
-
         ((a % m) / (b % m)) % m
-
 Division requires modular inverse.
 
 =========================================================================================
                 14. MODULAR EXPONENTIATION
 =========================================================================================
-
 Goal:
-
         a^b % mod
-
 efficiently.
 
 Without modulo:
@@ -634,9 +556,7 @@ Without modulo:
 Huge overflow occurs.
 
 Example:
-
         2^1000000
-
 Impossible to store.
 
 Solution:
@@ -681,37 +601,25 @@ O(log b)
 =========================================================================================
 
 Property used:
-
-        (a * b) % m
-        =
-        ((a % m) * (b % m)) % m
-
+        (a * b) % m = ((a % m) * (b % m)) % m
 So we reduce values repeatedly.
-
 Instead of huge numbers:
 -----------------------------------------
-
         2^1000000
-
 we always keep numbers in range:
-
         [0, mod-1]
-
 This prevents overflow.
 
 =========================================================================================
                 16. VERY IMPORTANT MOD VALUE
 =========================================================================================
-
 In CP you often see:
-
 */
 
 const int MOD = 1e9 + 7;
 
 /*
 Why?
-
 1. Large prime number
 2. Fits in int
 3. Good mathematical properties
@@ -726,7 +634,6 @@ Why?
 
 WRONG:
 -----------------------------------------
-
         pow(a,b) % mod
 
 Why wrong?
@@ -737,7 +644,6 @@ Why wrong?
 
 Correct:
 -----------------------------------------
-
         modularPower(a,b,mod)
 
 =========================================================================================
