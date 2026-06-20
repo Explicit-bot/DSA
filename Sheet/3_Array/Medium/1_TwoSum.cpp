@@ -45,7 +45,6 @@ vector<int> TwoSumTwoPointer(vector<int>& nums,int target){
             return {hash[left].second,hash[right].second};
         }
     }
-
     return {-1,-1};
 }
 
