@@ -1,5 +1,4 @@
 /*
-***
 Given an integer x, return true if x is a palindrome, and false otherwise.
 
 Input: x = -121
@@ -15,9 +14,9 @@ Follow up: Could you solve it without converting the integer to a string?
 #include <climits>
 using namespace std;
 
-bool ispal(int N){
+int revnum(int N){
     int revn{};
-    int num{N};  //***
+
     while(N!=0){
         int ld=N%10;
 
@@ -27,16 +26,17 @@ bool ispal(int N){
         if(revn<(INT_MIN/10)||(revn==INT_MIN&&ld<-8)){
             return 0;
         }
-
         revn=revn*10 + ld;
         N/=10;
     }
-    if(num>=0){
-        return revn==num;
-    }
-    else{
+    return revn;
+}
+
+bool ispal(int N){
+    if(N<0){
         return false;
     }
+    return N==revnum(N);    
 }
 
 

@@ -1,5 +1,4 @@
 /*
-***
 Problem Statement: Given an integer N, return the number of digits in N.
 */
 

@@ -16,24 +16,6 @@ int AddDigitsBrute(int num){
     return num;
 }
 
-//O(logn)
-int digitsum(int nums){
-    int sum{};
-
-    while(nums>9){
-        sum+=nums%10;
-        nums/=10;
-    }
-    return sum;
-}
-
-int AddDigitsBetter(int nums){
-    if(nums<=9){
-        return nums;
-    }
-    return AddDigitsBetter(digitsum(nums));
-}
-
 //O(1)
 int AddDigitsOptimal(int nums){
     if(nums==0){
@@ -42,23 +24,18 @@ int AddDigitsOptimal(int nums){
     
     return 1+(nums-1)%9;
 }
+
 int main(){
     int n{};
     cin>>n;
 
     cout<<AddDigitsBrute(n)<<" ";
-    cout<<AddDigitsBetter(n)<<" ";
     cout<<AddDigitsOptimal(n)<<" ";
 }
 
 /*
-ITERATIVE VS RECURSIVE
-Iterative:
-Time  : O(log n)
-Space : O(1)
-
-Recursive:
-Time  : O(log n)
-Space : O(log n) due to call stack
-So your iterative version is actually more space-efficient.
+Digital Root Formula: The repeated sum of the digits of a non-negative integer n until a single digit remains is called its digital root and is given by
+    dr(n) = 0 if n=0 
+    dr(n) = 1+(n−1)%9 for n>0
+This follows from the fact that a number and the sum of its digits are congruent modulo 9.
 */
