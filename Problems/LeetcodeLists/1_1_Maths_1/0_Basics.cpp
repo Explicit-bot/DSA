@@ -33,4 +33,11 @@ Read remainders bottom-up.
 • Base A → Base B
 Base A → Decimal → Base B
 
+4. Alternating sign sum
+------------------------------------------------------
+    ans = digit - ans
+Think as: 
+    new expression = new digit - old expression
+or
+new digit becomes positive,everything else changes sign.
 */

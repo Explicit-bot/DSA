@@ -1,13 +1,15 @@
 //********
 #include<iostream>
 #include<vector>
+#include <queue>
+#include <utility>
 using namespace std;
 
 long double minMaxDistanceBrute(vector<int>& arr,int k){
     int n=arr.size();
     vector<int> howMany(n-1,0);
 
-    for(int i{1};i<k;++i){
+    for(int i{1};i<=k;++i){
         long double maxsection{-1};
         int maxidx{-1};
         for(int j{};j<n-1;++j){
@@ -55,8 +57,39 @@ long double minMaxDistanceBetter(vector<int>& arr,int k){
     return pq.top().first;
 }
 
+//Optimal
+int cntGasStations(vector<int>& arr,long double dist){
+    int cnt{};
+    for(int i{1};i<arr.size();++i){
+        int numinbetween=((arr[i]-arr[i-1])/dist);
+        if((arr[i]-arr[i-1])/dist==numinbetween*dist){
+            --numinbetween;
+        }
+        cnt+=numinbetween;
+    }
+    return cnt;
+}
+
 long double minMaxDistanceOptimal(vector<int>& arr,int k){
-    return 0;
+    int n=arr.size();
+    long double low{};
+    long double high{};
+    for(int i {};i<n-1;++i){
+        high=max(high,(long double)(arr[i+1]-arr[i]));
+    }
+
+    long double diff=1e-6;
+    while(high-low>diff){
+        long double mid=(high+low)/(2.0);
+        int cnt=cntGasStations(arr,mid);
+        if(cnt>k){
+            low=mid;
+        }
+        else{
+            high=mid;
+        }
+    }
+    return high;
 }
 
 int main(){
@@ -73,6 +106,6 @@ int main(){
 
     cout<<minMaxDistanceBrute(nums,k)<<"\n";
     cout<<minMaxDistanceBetter(nums,k)<<"\n";
-    //cout<<minMaxDistanceOptimal(nums,k)<<"\n";
+    cout<<minMaxDistanceOptimal(nums,k)<<"\n";
 
 }

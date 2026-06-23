@@ -7,6 +7,7 @@
 #include<iostream>
 #include<vector>
 using namespace std;
+
 //*Sorted array
 int LowerBoundBrute(vector<int>& nums,int k){
     for(int i{};i<nums.size();++i){
