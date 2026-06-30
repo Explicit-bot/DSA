@@ -40,4 +40,24 @@ Think as:
     new expression = new digit - old expression
 or
 new digit becomes positive,everything else changes sign.
+
+5. INT_MAX and INT_MIN
+------------------------------------------------------
+• INT_MAX & INT_MIN do not come from <iostream> or <bits/stdc++.h> on macOS/Clang.
+They are actually defined inside: #include <climits>
+• INT_MAX and INT_MIN Bounds:
+    INT_MAX =  2147483647   (ends with 7)
+    INT_MIN = -2147483648   (ends with 8)
+As int so INT_MAX/10 would be 2147483647 not 214748364.7.So,when rev is near the boundary (INT_MAX/10 or INT_MIN/10),adding certain last digits would exceed the integer range.
+Correct Overflow Checks:       
+       // Positive limit
+       if (rev > INT_MAX/10 || (rev == INT_MAX/10 && lastdigit > 7))
+           return 0;
+
+       // Negative limit
+       if (rev < INT_MIN/10 || (rev == INT_MIN/10 && lastdigit < -8))
+           return 0;
+These checks ensure:
+- Multiplying rev by 10 is safe
+- Adding lastdigit will not push it outside the 32-bit range
 */
