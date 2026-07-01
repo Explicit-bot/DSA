@@ -29,5 +29,9 @@ a = 97
 |  tolower(c)   | Convert to lowercase | int                 | O(1)       |
 |  toupper(c)   | Convert to uppercase | int                 | O(1)       |
 
-
+3. To check for vowel use:
+    bool isvowel(char c){
+        c = tolower(c);
+        return string("aeiou").find(c) != string::npos;
+    }
 */
