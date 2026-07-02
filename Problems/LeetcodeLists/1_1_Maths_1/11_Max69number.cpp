@@ -11,7 +11,6 @@ int maximum69Number (int num) {
             break;
         }
     }
-    
     return stoi(s);
 }
 

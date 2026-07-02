@@ -1,17 +1,21 @@
 /*
+----------------------------------------------------
 1. Extraction of digits
------------------------------------------------------
+----------------------------------------------------
 • % (modulus) extracts the digit.
 • / (division) removes the digit.
+So,whenever we perform:
+    n % 10      //we get the LAST digit.
+    n / 10      //we REMOVE the LAST digit.
 
+----------------------------------------------------
 2. GCC BUILT-IN FUNCTIONS
------------------------------------------------------
+----------------------------------------------------
 __builtin_popcount(num) - Returns number of set bits.
 E.g:
-1110₂
-__builtin_popcount(14)
-= 3
-
+14 =1110₂
+__builtin_popcount(14) = 3
+___________________________________________________________
 __builtin_clz(num) - Returns number of leading zeros.
 E.g:
 For a 32-bit integer:
@@ -20,9 +24,26 @@ Binary: 00000000 00000000 00000000 00001110
 Leading zeros = 28
 Therefore:
 Bit Length = 32 - __builtin_clz(num)
+____________________________________________________________
+for a number with b bits:
+popcount() : O(b)
+clz()      : O(b)
+For int, b = 32 (constant), hence O(1).
 
+Why?
+Modern CPUs often have dedicated instructions for these operations:
+POPCNT (Population Count): counts the number of 1's in a word.
+LZCNT (Leading Zero Count) or BSR (Bit Scan Reverse): used to determine the number of leading zeros or the position of the highest set bit.
+
+So a compiler may translate
+    __builtin_popcount(num);   ->     POPCNT eax, edi
+Similarly,
+    __builtin_clz(num);     ->      LZCNT eax, edi
+Because these instructions execute in a fixed number of CPU cycles,we treat them as O(1)
+
+----------------------------------------------------
 3. Base conversion
------------------------------------------------------
+----------------------------------------------------
 • Decimal → Base b
 Repeated division by b.
 Read remainders bottom-up.
@@ -33,16 +54,9 @@ Read remainders bottom-up.
 • Base A → Base B
 Base A → Decimal → Base B
 
-4. Alternating sign sum
-------------------------------------------------------
-    ans = digit - ans
-Think as: 
-    new expression = new digit - old expression
-or
-new digit becomes positive,everything else changes sign.
-
-5. INT_MAX and INT_MIN
-------------------------------------------------------
+----------------------------------------------------
+4. INT_MAX and INT_MIN
+----------------------------------------------------
 • INT_MAX & INT_MIN do not come from <iostream> or <bits/stdc++.h> on macOS/Clang.
 They are actually defined inside: #include <climits>
 • INT_MAX and INT_MIN Bounds:
@@ -60,4 +74,32 @@ Correct Overflow Checks:
 These checks ensure:
 - Multiplying rev by 10 is safe
 - Adding lastdigit will not push it outside the 32-bit range
+
+----------------------------------------------------
+5. No. of Digits
+----------------------------------------------------
+Method 1: Using loop
+    if(n == 0){
+        return 1;
+    }
+    while(n > 0){
+        count++;
+        n /= 10;
+    }
+
+Method 2: Using log
+    digits = floor(log10(n)) + 1
+
+----------------------------------------------------
+6. Digital Root
+----------------------------------------------------
+Digital Root Formula: The repeated sum of the digits of a non-negative integer n until a single digit remains is called its digital root and is given by
+    dr(n) = 0 if n=0 
+    dr(n) = 1+(n−1)%9 for n>0
+This follows from the fact that a number and the sum of its digits are 
+congruent modulo 9.
+
+----------------------------------------------------
+7. 
+----------------------------------------------------
 */
