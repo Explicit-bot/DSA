@@ -17,6 +17,7 @@ vector<int> addToArrayForm(vector<int>& num, int k) {
     return num;
 }
 
+
 vector<int> addToArrayFormOptimal(vector<int>& num, int k) {
     int n=num.size();
     vector<int> ans;
