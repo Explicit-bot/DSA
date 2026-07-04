@@ -8,8 +8,7 @@
 #include<vector>
 using namespace std;
 
-
-void selectionSortIterative(vector<int>& nums){
+void selectionSort(vector<int>& nums){
     int n=nums.size();
     for(int i{};i<n-1;++i){
         int min=i;
@@ -24,7 +23,7 @@ void selectionSortIterative(vector<int>& nums){
 
 void selectionSortRecursive(vector<int>& nums,int i=0){
     int n=nums.size();
-    if(i==n-1){
+    if(i=n-1){
         return;
     }
     int min=i;

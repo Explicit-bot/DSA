@@ -9,13 +9,13 @@ int largestbrute(vector<int>& nums){
 }
 
 int largestOptimal(vector<int>& nums){
-        int lar{INT_MIN};
-        for(const int &var:nums){
-            if(var>lar){
-                lar=var;
-            }
+    int var{INT_MIN};
+    for(const auto& x:nums){
+        if(x>var){
+            var=x;
         }
-        return lar;
+    }
+    return var;
 }
 
 int main(){
