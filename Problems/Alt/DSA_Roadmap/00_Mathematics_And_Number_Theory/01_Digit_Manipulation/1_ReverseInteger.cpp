@@ -1,3 +1,4 @@
+//7
 //For this question reverse of 10400 will be 401 instead of 00401.
 #include <iostream>
 #include <climits>

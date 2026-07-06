@@ -1,3 +1,4 @@
+//2443
 #include<iostream>
 using namespace std;
 
@@ -10,9 +11,11 @@ int revn(int d){
     return ans;
 }
 
-bool isSameAfterReversals(int num) {
-    if(revn(revn(num))==num){
-        return true;
+bool sumOfNumberAndReverse(int num) {
+    for(int i{};i<=num;++i){
+        if(i+revn(i)==num){
+            return true;
+        }
     }
     return false;
 }
