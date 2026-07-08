@@ -4,7 +4,7 @@
 using namespace std;
 
 
-//Helper Function
+//Helper Function for both
 int squareSum(int n) {
     int sum{};
     while(n){
