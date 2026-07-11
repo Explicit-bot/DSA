@@ -1,337 +1,80 @@
-# 00_Mathematics_And_Number_Theory
-
-## 01_Digit_Manipulation
-
-### Learn Before Starting
-
-Before attempting any problem from this section, make sure you understand the following concepts.
-
----
-
-# 1. Number Systems
-
-* Decimal Number System (Base 10)
-* Place Value System
-* Powers of 10
-* Most Significant Digit (MSD)
-* Least Significant Digit (LSD)
-
-Example:
-
-```text
-5837
-
-5 × 10³ + 8 × 10² + 3 × 10¹ + 7 × 10⁰
-```
-
----
-
-# 2. Arithmetic Operators
-
-Learn and understand:
-
-```cpp
-+
--
-*
-/
-%
-```
+# 01_Digit_Manipulation
+## Extraction of digits
+• % (modulus) extracts the digit.
+• / (division) removes the digit.
+So,whenever we perform:
+    int digit = n % 10;     //we get the LAST digit.
+    n /= 10;                //we REMOVE the LAST digit.     
 
 Special focus on:
-
-## Integer Division
-
-```cpp
+### Integer Division
 123 / 10 = 12
 5 / 2 = 2
 1 / 10 = 0
-```
 
-## Modulo Operator
-
-```cpp
+### Modulo Operator
 123 % 10 = 3
 456 % 10 = 6
-```
 
----
-
-# 3. Control Structures
-
-You should be comfortable with:
-
-* if
-* if else
-* while loops
-* for loops
-
----
-
-# 4. Data Types
-
+## Data Types
 Understand:
-
-```cpp
 int
 long long
-```
 
 Know their limits:
-
-```cpp
-INT_MAX
-INT_MIN
-LLONG_MAX
-LLONG_MIN
-```
-
-Values:
-
-```cpp
 INT_MAX   = 2147483647
 INT_MIN   = -2147483648
-
 LLONG_MAX = 9223372036854775807
 LLONG_MIN = -9223372036854775808
-```
 
----
-
-# 5. Core Digit Manipulation Templates
-
-## Extract Last Digit
-
-```cpp
-int digit = n % 10;
-```
-
----
-
-## Remove Last Digit
-
-```cpp
-n /= 10;
-```
-
----
-
-## Traverse All Digits
-
-```cpp
-while(n > 0)
-{
-    int digit = n % 10;
-
-    // process digit
-
-    n /= 10;
-}
-```
-
----
-
-## Reverse Number
-
-```cpp
-reverse = reverse * 10 + digit;
-```
-
-Complete template:
-
-```cpp
-int reverse = 0;
-
-while(n > 0)
-{
-    int digit = n % 10;
-
-    reverse = reverse * 10 + digit;
-
-    n /= 10;
-}
-```
-
----
 
 ## Count Digits
+# Method 1: Using loop
+    if(n == 0){
+        return 1;
+    }
+    while(n > 0){
+        count++;
+        n /= 10;
+    }
 
-```cpp
-int count = 0;
+# Method 2: Using log
+    digits = floor(log10(n)) + 1
 
-while(n > 0)
-{
-    count++;
-    n /= 10;
-}
-```
-
----
-
-## Sum Of Digits
-
-```cpp
-int sum = 0;
-
-while(n > 0)
-{
-    sum += n % 10;
-
-    n /= 10;
-}
-```
-
----
-
-## Product Of Digits
-
-```cpp
-int product = 1;
-
-while(n > 0)
-{
-    product *= n % 10;
-
-    n /= 10;
-}
-```
-
----
-
-# 6. Mathematical Functions
-
-Header:
-
-```cpp
-#include <cmath>
-```
+# Mathematical Functions
+Header: #include <cmath>
 
 Functions to know:
-
-```cpp
-abs()
-sqrt()
-pow()
-log10()
-floor()
-ceil()
-```
-
-Examples:
-
-```cpp
 abs(-15)      // 15
 sqrt(49)      // 7
 pow(2,10)     // 1024
 log10(1000)   // 3
 floor(3.9)    // 3
 ceil(3.1)     // 4
-```
 
----
-
-# 7. STL Functions
-
+# STL Functions
 ## algorithm
-
-```cpp
-#include <algorithm>
-```
+Header: #include <algorithm>
 
 Functions:
-
-```cpp
-reverse()
-max()
-min()
-```
-
-Examples:
-
-```cpp
 reverse(v.begin(), v.end());
-
 max(a,b);
-
 min(a,b);
-```
-
----
 
 ## string
-
-```cpp
-#include <string>
-```
+Header: #include <string>
 
 Functions:
-
-```cpp
 to_string()
 stoi()
 stoll()
-```
 
 Examples:
-
-```cpp
 string s = to_string(123);
-
 int x = stoi("123");
-
 long long y = stoll("123456789123");
-```
 
----
-
-# 8. Complexity Knowledge
-
-Understand why:
-
-```cpp
-while(n > 0)
-{
-    n /= 10;
-}
-```
-
-runs in:
-
-```text
-O(log10(n))
-```
-
-and not:
-
-```text
-O(n)
-```
-
-Reason:
-
-Each iteration removes one digit.
-
-Example:
-
-```text
-1000000000
-100000000
-10000000
-1000000
-100000
-10000
-1000
-100
-10
-1
-0
-```
-
-Only 10 iterations are required.
-
----
-
-# 9. Important Edge Cases
+# Important Edge Cases
 Always check:
 * n = 0
 * negative numbers
