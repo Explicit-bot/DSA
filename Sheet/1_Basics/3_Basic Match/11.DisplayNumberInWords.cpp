@@ -4,7 +4,6 @@ using namespace std;
 
 vector<int> displaynum(int n){
     vector<int> num{};
-
     if(n==0){
         num.push_back(0);
     }
