@@ -3,6 +3,7 @@
 #include<vector>
 using namespace std;
 
+
 string removeOuterParentheses(string s) {
     int n=s.size();
     string ans;
