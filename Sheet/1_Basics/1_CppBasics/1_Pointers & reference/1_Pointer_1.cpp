@@ -5,7 +5,7 @@
 • A pointer is a variable that stores the memory address of another variable.
 e.g
         int x = 10;
-        int *p = &x;  // 'p' stores the address of 'x'
+        int* p = &x;  // 'p' stores the address of 'x'
         
         cout << &a << "\n";     // prints address of a
         cout << ptr << "\n";    // same as &a
@@ -16,7 +16,7 @@ e.g
 - *p accesses the value at that address (i.e., dereferencing the  pointer).
 
 • Declaration Syntax:-
-        <data_type> *pointer_name;
+        <data_type>* pointer_name;
 E.g.
         int* p;       // pointer to int
         float* fptr;  // pointer to float
@@ -28,12 +28,12 @@ E.g.
                         ====================================================
 ✅ Syntax:
 1. For Single Variable
-    int *p = new int;      // allocate memory for one int
+    int* p = new int;      // allocate memory for one int
     *p = 10;               // assign value
     delete p;              // deallocate memory
 
 2. For Array
-    int *arr = new int[5];     // allocate array of 5 integers
+    int* arr = new int[5];     // allocate array of 5 integers
     arr[0] = 1;
     arr[1] = 2;
     // ...
