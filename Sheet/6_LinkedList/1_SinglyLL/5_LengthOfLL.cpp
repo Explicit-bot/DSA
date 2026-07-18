@@ -47,7 +47,7 @@ int main(){
 
     //Traversal
     Node* temp=head;
-    while(temp){
+    while(temp!=nullptr){
         cout<<temp->data<<" ";
         temp=temp->next;
     }

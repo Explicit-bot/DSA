@@ -59,7 +59,7 @@ Node* removetail(Node* head){
 //Delete Kth Node
 Node* removekth(Node* head , int k){
     if(head==nullptr){
-        return head;
+        return NULL;
     }
     if(k==1){
         Node* temp=head;

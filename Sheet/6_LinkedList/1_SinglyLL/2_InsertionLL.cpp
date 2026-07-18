@@ -52,34 +52,49 @@ Node* insertNodeAtTail(Node* head, int val){
 
 //Insertion at kth position
 Node* insertNodeAtKthPosition(Node* head, int val , int k){
-    if(head==nullptr){
+    if(head==NULL){
         if(k==1){
-            return new Node(val,head);
+            return new Node(val);
         }
         else{
             return NULL;
         }
     }
-    if(head==nullptr){
-        if(k==1){
-            return new Node(val,head);
-        }
-        else{
-            return nullptr;
-        }
-    }
     if(k==1){
         return new Node(val,head);
     }
-
     int cnt{};
     Node* temp=head;
-    while(temp){
+    while(temp!=nullptr){
         ++cnt;
-        if(cnt==k-1){
-
+        if(k-1==cnt){
+            Node* x=new Node(val,temp->next);
+            temp->next=x;
+            break;
         }
+        temp=temp->next;
     }
+    return head;
+}
+
+//Insert befor value k
+Node* insertNodeBeforeValue(Node* head, int val , int k){
+    if(head==NULL){
+        return NULL;
+    }
+    if(head->data==k){
+        return new Node(val,head);
+    }
+    Node* temp=head;
+    while(temp->next!=nullptr && temp!=nullptr){
+        if(temp->next->data==k){
+            Node* x=new Node(val,temp->next);
+            temp->next=x;
+            break;
+        }
+        temp=temp->next;
+    }
+    return head;
 }
 
 int main(){
@@ -93,9 +108,8 @@ int main(){
         temp=temp->next;
     }
     cout<<"\n";
+
 }
-
-
 
 /*
 Returning Directly
