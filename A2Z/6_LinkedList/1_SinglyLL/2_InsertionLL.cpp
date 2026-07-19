@@ -77,7 +77,7 @@ Node* insertNodeAtKthPosition(Node* head, int val , int k){
     return head;
 }
 
-//Insert befor value k
+//Insert before value k
 Node* insertNodeBeforeValue(Node* head, int val , int k){
     if(head==NULL){
         return NULL;

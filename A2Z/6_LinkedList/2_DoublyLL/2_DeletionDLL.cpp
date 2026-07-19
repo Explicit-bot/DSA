@@ -22,6 +22,10 @@ class Node{
 };
 
 Node* ConvertArr2DLL(vector<int> nums){
+    if(nums.empty()){
+        return nullptr;
+    } 
+        
     Node* head=new Node(nums[0]);
     Node* last=head;
 
@@ -107,8 +111,47 @@ Node* deleteKthNode(Node* head,int k){
         return deleteHead(head);
     }
     else if(Realnext==nullptr){
-       deleteTail(head);
-       return head;
+       return deleteTail(head);
+    }
+    else{
+        Realprev->next=Realnext;
+        Realnext->prev=Realprev;
+        temp->next=nullptr;
+        temp->prev=nullptr;
+        delete temp;
+    }
+    return head;
+} 
+
+//Delete value k
+Node* deleteKthValue(Node* head,int k){
+    if(head==nullptr){
+        return NULL;
+    }
+
+    Node* temp=head;
+    while(temp!=nullptr){
+        if(temp->data==k){
+            break;
+        }
+        temp=temp->next;
+    }
+    if(temp==nullptr){
+        return head;
+    }
+    
+    Node* Realnext=temp->next;
+    Node* Realprev=temp->prev;
+
+    if(Realnext==nullptr && Realprev==nullptr){
+        delete temp;
+        return NULL;
+    }
+    else if(Realprev==nullptr){
+        return deleteHead(head);
+    }
+    else if(Realnext==nullptr){
+        return deleteTail(head);
     }
     else{
         Realprev->next=Realnext;
