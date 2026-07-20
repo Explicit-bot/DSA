@@ -64,6 +64,8 @@ Node* insertAtTail(Node* head,int val){
 //Insert before Kth position
 
 
+//Insertion before value k
+
 int main(){
     vector<int> nums={12,2,3,4,5,6,7};
     Node* head=ConvertArr2DLL(nums);
