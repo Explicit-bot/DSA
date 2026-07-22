@@ -22,6 +22,9 @@ class Node{
 };
 
 Node* ConvertArr2DLL(vector<int> nums){
+    if(nums.empty()){
+        return NULL;
+    }
     Node* head=new Node(nums[0]);
     Node* last=head;
 
@@ -45,24 +48,61 @@ Node* insertAtHead(Node* head,int val){
     return temp;
 }
 
-//Insertion after tail
-Node* insertAtTail(Node* head,int val){
+//Insertion before tail
+Node* insertBeforeTail(Node* head,int val){
     if(head==nullptr){
         return new Node(val);
     }
-
+    if(head->next==nullptr){
+        Node* newNode=new Node(val,head,nullptr);
+        head->prev=newNode;
+        return newNode;
+    }
     Node* temp=head;
     while(temp->next!=nullptr){
         temp=temp->next;
     }
-    Node* last=new Node(val,nullptr,temp);
-    temp->next=last;
-
+    Node* prevNode=temp->prev;
+    Node* last=new Node(val,temp,prevNode);
+    prevNode->next=last;
+    temp->prev=last;
     return head;
 }
 
 //Insert before Kth position
+Node* insertBeforeKth(Node* head,int val,int k){
+    if(k<=0){
+        return head;
+    }
+    if(head==nullptr){
+        if(k==1){
+            return new Node(val);
+        }
+        return NULL;
+    }
+    if(k==1){
+        Node* first=new Node(val,head,nullptr);
+        head->prev=first;
+        return first;
+    }
 
+    Node* temp=head;
+    int cnt{1};
+    while(temp!=nullptr && cnt<k){
+        temp=temp->next;
+        ++cnt;
+    }
+    if(temp==nullptr){
+        return head;
+    }
+
+    Node* prevNode=temp->prev;
+    Node* newNode=new Node(val,temp,prevNode);
+    prevNode->next=newNode;
+    temp->prev=newNode;
+
+    return head;
+}
 
 //Insertion before value k
 
