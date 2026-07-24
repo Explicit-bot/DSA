@@ -30,7 +30,35 @@ Node* ConvertArr2LL(vector<int> nums){
     return head;
 }
 
+//Brute
+bool detectCycle(Node* head){
+    unordered_map<Node* ,int> mpp;
+    Node* temp=head;
+    while(temp!=nullptr){
+        if(mpp.find(temp)!=mpp.end()){
+            return true;
+        }
+        mpp[temp]=1;
+        temp=temp->next;
+    }
+    return false;
+}
 
+//Optimal
+bool detectCycleOptimal(Node* head){
+    Node* slow=head;
+    Node* fast=head;
+    
+    while(fast->next!=nullptr && fast!=nullptr){
+        slow=slow->next;
+        fast=fast->next->next;
+
+        if(slow==fast){
+            return true;
+        }
+    }
+    return false;
+}
 
 
 int main(){
